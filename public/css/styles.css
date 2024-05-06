@@ -1,6 +1,45 @@
-section{
+* {
+    color: white;
+}
+
+.navbar {
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+}
+.navbar-nav .nav-link {
+    filter: drop-shadow(0 0 0 transparent); /* Awalnya tanpa shadow */
+    transition: filter 0.3s ease-in-out; /* Transisi untuk efek shadow */
+  }
+  
+  .navbar-nav .nav-link:hover,
+  .navbar-nav .nav-link:focus {
+    filter: drop-shadow(0 0 5px rgb(255, 255, 0)); /* Efek shadow saat hover atau focus */
+  }
+
+section {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.fix-header{
     height: 100vh;
 }
+swiper-container {
+    width: 100%;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+swiper-slide {
+    background-position: center;
+    background-size: cover;
+    width: 300px;
+    height: 300px;
+}
+
+swiper-slide img {
+    display: block;
+    width: 100%;
+}
+
+/*  */
