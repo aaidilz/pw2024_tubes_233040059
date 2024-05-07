@@ -15,7 +15,7 @@ if ($query->num_rows > 0) {
         if ($row['role'] == 'admin') {
             header("location: ../admin/dashboard/dashboard.php");
         } else {
-            echo 'login berhasil';
+            echo 'login berhasil sebagai user';
         }
     }
 } else {
