@@ -45,22 +45,22 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="nav nav-pills mb-auto">
                 <li class="nav-item">
-                    <a href="#" class="nav-link active" aria-current="page">
+                    <a href="dashboard.php" class="nav-link active" aria-current="page">
                         <i class="fa fa-home"></i> Home
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="nav-link text-white">
+                    <a href="order.php" class="nav-link text-white">
                         <i class="fa fa-cart-shopping"></i> Orders
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="nav-link text-white">
-                        <i class="fa fa-gamepad"></i> Aplication
+                    <a href="application.php" class="nav-link text-white">
+                        <i class="fa fa-gamepad"></i> Applications
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="nav-link text-white">
+                    <a href="user.php" class="nav-link text-white">
                         <i class="fa fa-cart-shopping"></i> Users
                     </a>
                 </li>
@@ -70,7 +70,7 @@
                     <a class="nav-link" href="#"><i class="fa fa-user"></i> Profile</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fa fa-door-open"></i> Logout</a>
+                    <a class="nav-link" href="controller/logout.php"><i class="fa fa-door-open"></i> Logout</a>
                 </li>
             </ul>
         </div>

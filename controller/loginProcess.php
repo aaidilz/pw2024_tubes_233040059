@@ -5,12 +5,19 @@ require '../database/koneksi.php';
 $username = $_POST['username'];
 $password = $_POST['password'];
 
-$query = $connection->query("SELECT * FROM admin WHERE username = '$username' AND password = '$password'");
+$query = $connection->query("SELECT * FROM user WHERE username = '$username' AND password = '$password'");
 
 if ($query->num_rows > 0) {
     session_start();
     $_SESSION['username'] = $username;
-    header('location:../dashboard.php');
+
+    while ($row = $query->fetch_assoc()) {
+        if ($row['role'] == 'admin') {
+            header("location: ../admin/dashboard.php");
+        } else {
+            echo 'login berhasil';
+        }
+    }
 } else {
-    header('location:../login.php');
+    header("location: ../login.php");
 }
