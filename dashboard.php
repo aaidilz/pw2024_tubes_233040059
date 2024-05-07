@@ -12,17 +12,11 @@ if (!isset($_SESSION['username'])) {
 <html lang="en">
 
 <?php include 'layout/dashboard/header.php'; ?>
-
-<body style="overflow: hidden;">
+<body>
     <?php include 'layout/dashboard/navbar.php'; ?>
-    <div class="row">
-        <div class="col-md-3">
-            <?php include 'layout/dashboard/sidebar.php'; ?>
-        </div>
-        <div class="col-md-9">
-            <?php include 'layout/dashboard/page-content.php'; ?>
-        </div>
+    <div class="container-fluid">
+        <?php include 'view/admin/main-page.php'; ?>
     </div>
-</body> 
+</body>
 
 </html>

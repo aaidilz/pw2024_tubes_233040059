@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<?php include 'layout/header.php'; ?>
+<?php include 'layout/home/header.php'; ?>
 
 <body class="bg-dark">
   <section class="vh-100">

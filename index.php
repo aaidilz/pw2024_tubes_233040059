@@ -2,15 +2,15 @@
 <html lang="en">
 
 <!-- header -->
-<?php include 'layout/header.php'; ?>
+<?php include 'layout/home/header.php'; ?>
 
 <body class="bg-black">
 
     <!-- navbar -->
-    <?php include 'layout/navbar.php'; ?>
+    <?php include 'layout/home/navbar.php'; ?>
 
     <!-- page-content -->
-    <?php include 'layout/page-content.php'; ?>
+    <?php include 'layout/home/page-content.php'; ?>
 
 </body>
 
