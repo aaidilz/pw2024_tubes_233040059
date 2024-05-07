@@ -20,7 +20,7 @@ function deleteUser($id)
     $query = $connection->query("DELETE FROM user WHERE id = $id");
 
     if ($query) {
-        header('Location: ../user.php');
+        header('Location: ../dashboard/user.php');
         exit;
     } else {
         echo 'Gagal menghapus user';

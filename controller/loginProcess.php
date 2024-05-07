@@ -13,7 +13,7 @@ if ($query->num_rows > 0) {
 
     while ($row = $query->fetch_assoc()) {
         if ($row['role'] == 'admin') {
-            header("location: ../admin/dashboard.php");
+            header("location: ../admin/dashboard/dashboard.php");
         } else {
             echo 'login berhasil';
         }

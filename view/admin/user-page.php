@@ -26,7 +26,7 @@
                                 <td><?= $user['email']; ?></td>
                                 <td>
                                     <a href="edit-user.php?id=<?= $user['id']; ?>" class="btn btn-warning">Edit</a>
-                                    <a href="controller/userController.php?action=delete&id=<?php echo $user['id']; ?>" class="btn btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus pengguna ini?')">Delete</a>
+                                    <a href="../controller/userController.php?action=delete&id=<?php echo $user['id']; ?>" class="btn btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus pengguna ini?')">Delete</a>
                                 </td>
                             </tr>
                         <?php
