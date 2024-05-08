@@ -34,7 +34,7 @@
                         ?>
                     </tbody>
                 </table>
-                <a href="#" class="btn btn-primary">Tambah User</a>
+                <a href="add-user.php" class="btn btn-primary">Tambah User</a>
             </div>
         </div>
     </div>
