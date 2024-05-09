@@ -1,5 +1,7 @@
 <?php
 require '../controller/authController.php';
+require '../controller/categoryController.php';
+require '../model/application.php';
 ?>
 
 <!DOCTYPE html>

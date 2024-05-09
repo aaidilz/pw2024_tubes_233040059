@@ -1,5 +1,4 @@
 <?php
-require '../../database/koneksi.php';
 require '../controller/authController.php';
 ?>
 
