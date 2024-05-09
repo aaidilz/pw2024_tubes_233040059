@@ -37,7 +37,7 @@ if (isset($_GET['action'])) {
 // Add user function
 function addUser()
 {
-    require_once '../../database/koneksi.php';
+    require_once '../../app/database/koneksi.php';
 
     // Validate input
     $username = validateInput($_POST['username']);
@@ -60,7 +60,7 @@ function addUser()
 // delete user function
 function deleteUser($id)
 {
-    require_once '../../database/koneksi.php';
+    require_once '../../app/database/koneksi.php';
 
     // Validate ID
     if (!is_numeric($id) || $id <= 0) {

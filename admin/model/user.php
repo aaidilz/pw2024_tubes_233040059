@@ -1,6 +1,6 @@
 <?php
 
-require '../../database/koneksi.php';
+require '../../app/database/koneksi.php';
 
 $query = $connection->query("SELECT * FROM user");
 

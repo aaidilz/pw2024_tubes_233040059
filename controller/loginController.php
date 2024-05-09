@@ -3,7 +3,7 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 'On');
 
-require '../database/koneksi.php';
+require '../app/database/koneksi.php';
 
 // Validate input
 $username = validateInput($_POST['username']);

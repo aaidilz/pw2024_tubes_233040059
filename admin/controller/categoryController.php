@@ -37,7 +37,7 @@ if (isset($_GET['action'])) {
 // Add category function
 function addCategory()
 {
-    require_once '../../database/koneksi.php';
+    require_once '../../app/database/koneksi.php';
 
     // Validate input
     $name = validateInput($_POST['name']);
@@ -59,7 +59,7 @@ function addCategory()
 
 function deleteCategory($id)
 {
-    require_once '../../database/koneksi.php';
+    require_once '../../app/database/koneksi.php';
 
     // protect from SQL injection :D
     $query = $connection->prepare("DELETE FROM category WHERE id = ?");
