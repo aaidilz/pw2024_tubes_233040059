@@ -3,7 +3,7 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 'On');
 
-require '../app/database/koneksi.php';
+require '../../app/database/koneksi.php';
 
 // Validate input
 $username = validateInput($_POST['username']);
@@ -25,14 +25,14 @@ if ($verify) {
 
     if ($row['role'] == 'admin') {
         $_SESSION['role'] = 'admin';
-        header("location: ../admin/dashboard/dashboard.php");
+        header("location: ../../admin/dashboard/dashboard.php");
         exit();
     } else {
         $_SESSION['role'] = 'user';
         echo 'Login berhasil sebagai user';
     }
 } else {
-    header("location: ../login.php?error=wrongpassword");
+    header("location: ../../login.php?error=wrongpassword");
     exit();
 }
 function validateInput($input)
