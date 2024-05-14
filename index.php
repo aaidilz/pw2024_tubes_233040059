@@ -15,7 +15,7 @@
     <script>
         var swiper = new Swiper(".mySwiper", {
             slidesPerView: 3, // Tampilkan 3 gambar secara default
-            spaceBetween: 30, // Spasi antara gambar
+            spaceBetween: 15, // Spasi antara gambar
             navigation: {
                 nextEl: ".swiper-button-next",
                 prevEl: ".swiper-button-prev",
