@@ -40,7 +40,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="nav-link text-white">
+                    <a href="../admin/users.php" class="nav-link text-white">
                         <i class="fa fa-cart-shopping"></i> Users
                     </a>
                 </li>

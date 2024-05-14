@@ -12,7 +12,7 @@
             <i class="fas fa-layer-group fa-2x me-3 pt-5 mt-xl-4 text-warning"> STACKED</i>
           </div>
           <div class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5 text-white">
-            <form action="../app/controller/loginController.php" method="POST">
+            <form action="../app/controller/LoginController.php" method="POST">
               <h3 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Log in</h3>
               <div data-mdb-input-init class="form-outline mb-4">
                 <input type="text" id="form2Example18" class="form-control form-control-lg" name="username"
