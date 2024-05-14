@@ -28,7 +28,7 @@ class LoginController
             if ($user['role'] == 'admin') {
                 header('Location: ../../admin/dashboard.php');
             } else {
-                echo "hello user!";
+                header('Location: ../../index.php');
             }
             exit();
 
