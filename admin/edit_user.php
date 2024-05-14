@@ -27,27 +27,34 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 ?>
 
-<div class="container-fluid">
-    <h1 class="mt-4">Edit Pengguna</h1>
-    <?php if (isset($error)): ?>
-        <div class="alert alert-danger"><?php echo $error; ?></div>
-    <?php endif; ?>
-    <form action="edit_user.php" method="POST">
-        <input type="hidden" name="id" value="<?php echo $user['id']; ?>">
-        <div class="form-group">
-            <label for="username">Username</label>
-            <input type="text" name="username" id="username" class="form-control" value="<?php echo $user['username']; ?>" required>
+<div class="container mt-4 w-50">
+    <div class="card">
+        <div class="card-header">
+            <h1>Edit Pengguna</h1>
         </div>
-        <div class="form-group">
-            <label for="role">Role</label>
-            <select name="role" id="role" class="form-control" required>
-                <option value="user" <?php echo $user['role'] == 'user' ? 'selected' : ''; ?>>User</option>
-                <option value="admin" <?php echo $user['role'] == 'admin' ? 'selected' : ''; ?>>Admin</option>
-            </select>
+        <div class="card-body">
+            <?php if (isset($error)): ?>
+                <div class="alert alert-danger"><?php echo $error; ?></div>
+            <?php endif; ?>
+            <form action="edit_user.php" method="POST">
+                <input type="hidden" name="id" value="<?php echo $user['id']; ?>">
+                <div class="form-group mb-3">
+                    <label for="username">Username</label>
+                    <input type="text" name="username" id="username" class="form-control" value="<?php echo $user['username']; ?>" required>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="role">Role</label>
+                    <select name="role" id="role" class="form-control" required>
+                        <option value="user" <?php echo $user['role'] == 'user' ? 'selected' : ''; ?>>User</option>
+                        <option value="admin" <?php echo $user['role'] == 'admin' ? 'selected' : ''; ?>>Admin</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Simpan</button>
+            </form>
         </div>
-        <button type="submit" class="btn btn-primary">Simpan</button>
-    </form>
+    </div>
 </div>
+
 
 <?php
 require '../layout/admin/footer.php';

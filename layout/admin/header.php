@@ -13,7 +13,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
-<body class="bg-dark">
+<body class="bg-dark text-white">
 <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
     <div class="container-fluid">
         <a class="navbar-brand mx-3" href="#">Hello, User</i></a>
