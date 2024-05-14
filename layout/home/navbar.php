@@ -1,20 +1,3 @@
-<style>
-.navbar {
-    background: rgba(0, 0, 0, 0);
-    backdrop-filter: blur(5px);
-}
-
-.navbar-nav .nav-link {
-    filter: drop-shadow(0 0 0 transparent);
-    transition: filter 0.3s ease-in-out;
-}
-
-.navbar-nav .nav-link:hover,
-.navbar-nav .nav-link:focus {
-    filter: drop-shadow(0 0 5px rgb(255, 255, 0));
-}   
-</style>
-
 <nav class="navbar navbar-expand-lg bg-body-transparent fixed-top">
     <div class="container-fluid mx-5 mt-1">
         <a class="navbar-brand text-warning" href="#"><i class="fa-solid fa-layer-group text-warning"></i> STACKED</a>

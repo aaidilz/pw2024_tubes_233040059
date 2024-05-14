@@ -1,20 +1,16 @@
-<?php
-require 'init.php';
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
 <!-- header -->
-<?php include $path . '/layout/home/header.php'; ?>
+<?php include 'layout/home/header.php'; ?>
 
-<body class="bg-black">
+<body>
 
     <!-- navbar -->
-    <?php include $path . '/layout/home/navbar.php'; ?>
+    <?php include 'layout/home/navbar.php'; ?>
 
     <!-- page-content -->
-    <?php include $path . '/layout/home/page-content.php'; ?>
+    <?php include 'layout/home/page-content.php'; ?>
 
     <script>
         var swiper = new Swiper(".mySwiper", {
