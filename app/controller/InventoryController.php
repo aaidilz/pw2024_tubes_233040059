@@ -12,78 +12,44 @@ class InventoryController
     {
         $this->conn = $conn;
     }
-    // inventory ========================
-    public function getAllInventorys()
+    public function getInventory()
     {
-        $sql = "SELECT * FROM inventory";
+        $sql = "SELECT inventory.inventory_id, inventory.name AS inventory_name, inventory.quantity, inventory.price, category.name AS category_name FROM inventory JOIN category ON inventory.category_id = category.category_id";
         $result = $this->conn->query($sql);
-
-        $inventorys = [];
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                $inventorys[] = $row;
-            }
-        }
-        return $inventorys;
+        return $result->fetch_all(MYSQLI_ASSOC);
     }
-
-    public function getInventoryById($id)
+    public function getCategories()
     {
-        $sql = "SELECT * FROM inventory WHERE id = ?";
-        $stmt = $this->conn->prepare($sql);
-        $stmt->bind_param('i', $id);
-        $stmt->execute();
-        return $stmt->get_result()->fetch_assoc();
+        $sql = "SELECT * FROM category";
+        $result = $this->conn->query($sql);
+        return $result->fetch_all(MYSQLI_ASSOC);
     }
-
     public function createInventory($name, $quantity, $price, $category_id)
     {
         $sql = "INSERT INTO inventory (name, quantity, price, category_id) VALUES (?, ?, ?, ?)";
         $stmt = $this->conn->prepare($sql);
-        $stmt->bind_param('siii', $name, $quantity, $price, $category_id);
-        return $stmt->execute();
-    }
-    public function updateInventory( $name, $quantity, $price, $category_id, $id)
-    {
-        $sql = "UPDATE inventory SET name = ?, quantity = ?, price = ?, category_id = ? WHERE id = ?";
-        $stmt = $this->conn->prepare($sql);
-        $stmt->bind_param('siiii', $name, $quantity, $price, $category_id, $id);
-        return $stmt->execute();
-    }
-    public function deleteInventory($inventory_id)
-    {
-        $sql = "DELETE FROM inventory WHERE inventory_id = ?";
-        $stmt = $this->conn->prepare($sql);
-        $stmt->bind_param('i', $inventory_id);
-        return $stmt->execute();
-    }
-    // category ========================
-    public function getAllCategories()
-    {
-        $sql = "SELECT * FROM category";
-        $result = $this->conn->query($sql);
-
-        $categories = [];
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                $categories[] = $row;
-            }
+        $stmt->bind_param('sidi', $name, $quantity, $price, $category_id);
+        if ($stmt->execute()) {
+            $_SESSION['success_message'] = "sukses!";
+        } else {
+            $_SESSION['error_message'] = "gagal :(";
         }
-        return $categories;
+        header('Location: inventorys.php');
+        exit();
     }
     public function createCategory($name)
     {
         $sql = "INSERT INTO category (name) VALUES (?)";
         $stmt = $this->conn->prepare($sql);
         $stmt->bind_param('s', $name);
-        return $stmt->execute();
+        if ($stmt->execute()) {
+            $_SESSION['success_message'] = "Category added successfully!";
+        } else {
+            $_SESSION['error_message'] = "Failed to add category!";
+        }
+        header('Location: inventorys.php');
+        exit();
     }
-    public function deleteCategory($id)
-    {
-        $sql = "DELETE FROM category WHERE id = ?";
-        $stmt = $this->conn->prepare($sql);
-        $stmt->bind_param('i', $id);
-        return $stmt->execute();
-    }
+
 
 }
