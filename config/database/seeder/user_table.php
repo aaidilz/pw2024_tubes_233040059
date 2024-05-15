@@ -1,14 +1,11 @@
 <?php
-require '../database/koneksi.php'; // Sesuaikan dengan path yang sesuai
+require '../connection.php';
 
-// Cek apakah tabel user sudah memiliki data
-$queryCheck = $connection->query("SELECT COUNT(*) as count FROM user");
+$queryCheck = $conn->query("SELECT COUNT(*) as count FROM user");
 $rowCheck = $queryCheck->fetch_assoc();
 if ($rowCheck['count'] > 0) {
-    // Kosongkan tabel user
-    $connection->query("TRUNCATE TABLE user");
-    // Set auto-increment ke nilai awal
-    $connection->query("ALTER TABLE user AUTO_INCREMENT = 1");
+    $conn->query("TRUNCATE TABLE user");
+    $conn->query("ALTER TABLE user AUTO_INCREMENT = 1");
 }
 
 // Data yang akan dimasukkan ke dalam tabel user
@@ -26,10 +23,9 @@ foreach ($users as $user) {
     $role = $user['role'];
 
     // Insert data menggunakan prepared statement
-    $stmt = $connection->prepare("INSERT INTO user (username, email, password, role) VALUES (?, ?, ?, ?)");
+    $stmt = $conn->prepare("INSERT INTO user (username, email, password, role) VALUES (?, ?, ?, ?)");
     $stmt->bind_param("ssss", $username, $email, $password, $role);
     $stmt->execute();
 }
 
-echo "Data berhasil dimasukkan ke dalam tabel user dan tabel dikosongkan serta auto-increment direset.";
-?>
+echo "Data berhasil dimasukkan!";
