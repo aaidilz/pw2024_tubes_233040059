@@ -43,11 +43,18 @@ class InventoryController
         $stmt->bind_param('siii', $name, $quantity, $price, $category_id);
         return $stmt->execute();
     }
-    public function updateInventory($id, $name, $quantity, $price, $category_id)
+    public function updateInventory( $name, $quantity, $price, $category_id, $id)
     {
         $sql = "UPDATE inventory SET name = ?, quantity = ?, price = ?, category_id = ? WHERE id = ?";
         $stmt = $this->conn->prepare($sql);
         $stmt->bind_param('siiii', $name, $quantity, $price, $category_id, $id);
+        return $stmt->execute();
+    }
+    public function deleteInventory($inventory_id)
+    {
+        $sql = "DELETE FROM inventory WHERE inventory_id = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param('i', $inventory_id);
         return $stmt->execute();
     }
     // category ========================
@@ -64,14 +71,6 @@ class InventoryController
         }
         return $categories;
     }
-    public function deleteInventory($id)
-    {
-        $sql = "DELETE FROM inventory WHERE id = ?";
-        $stmt = $this->conn->prepare($sql);
-        $stmt->bind_param('i', $id);
-        return $stmt->execute();
-    }
-
     public function createCategory($name)
     {
         $sql = "INSERT INTO category (name) VALUES (?)";
