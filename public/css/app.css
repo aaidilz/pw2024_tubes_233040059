@@ -4,6 +4,13 @@ body {
     background-repeat: no-repeat;
 }
 
+.register-body {
+    background-image: url('/public/img/login-screen.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+
+}
+
 .navbar {
     background: rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(5px);
@@ -38,5 +45,5 @@ body {
     object-fit: cover;
     border-radius: 20px;
     pointer-events: none;
-    
+
 }

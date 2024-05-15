@@ -1,3 +1,12 @@
+<?php
+session_start();
+
+if (isset($_SESSION['success_message'])) {
+    echo '<script>alert("' . $_SESSION['success_message'] . '");</script>';
+    unset($_SESSION['success_message']);
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,7 +22,7 @@
           </div>
           <div class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5 text-white">
             <form action="../app/controller/LoginController.php" method="POST">
-              <h3 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Log in</h3>
+              <h4 class="fw-bold mb-3 pb-3" style="letter-spacing: 1px;">Log in</h4>
               <div data-mdb-input-init class="form-outline mb-4">
                 <input type="text" id="form2Example18" class="form-control form-control-lg" name="username"
                   placeholder="Username" required>
@@ -36,7 +45,7 @@
               }
               ?>
 
-              <p>Don't have an account? <a href="#!" class="link-info">Register here</a></p>
+              <p>Don't have an account? <a href="register.php" class="fw-bold text-white">Register here</a></p>
             </form>
           </div>
         </div>

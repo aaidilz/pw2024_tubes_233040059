@@ -10,7 +10,7 @@
     <?php include 'layout/home/navbar.php'; ?>
 
     <!-- page-content -->
-    <?php include 'layout/home/page-content.php'; ?>
+    <?php include 'layout/home/main-page.php'; ?>
 
     <script>
         var swiper = new Swiper(".mySwiper", {

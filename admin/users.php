@@ -35,14 +35,21 @@ $users = $controller->getAllUsers();
                             <td><?php echo $user['email']; ?></td>
                             <td><?php echo $user['role']; ?></td>
                             <td>
-                                <a href="edit_user.php?id=<?php echo $user['id']; ?>" class="btn btn-warning btn-sm">Edit</a>
-                                <a href="delete_user.php?id=<?php echo $user['id']; ?>" class="btn btn-danger btn-sm">Hapus</a>
+                                <?php if ($user['role'] === 'admin'): ?>
+                                    <a href="edit_user.php?id=<?php echo $user['id']; ?>"
+                                        class="btn btn-warning btn-sm"><i class="fa fa-wrench"></i> Edit</a>
+                                <?php else: ?>
+                                    <a href="edit_user.php?id=<?php echo $user['id']; ?>"
+                                        class="btn btn-warning btn-sm"><i class="fa fa-wrench"></i> Edit</a>
+                                    <a href="delete_user.php?id=<?php echo $user['id']; ?>"
+                                        class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Hapus</a>
+                                <?php endif; ?>
                             </td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
             </table>
-            <a href="create_user.php" class="btn btn-primary mb-3">Tambah Pengguna Baru</a>
+            <a href="create_user.php" class="btn btn-primary mb-3"><i class="fa fa-plus"></i> Tambah Pengguna Baru</a>
         </div>
     </div>
 </div>

@@ -61,4 +61,3 @@ class UserController
         return $stmt->execute();
     }
 }
-?>

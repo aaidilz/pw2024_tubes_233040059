@@ -42,7 +42,7 @@
                 </li>
                 <li>
                     <a href="../admin/users.php" class="nav-link text-white">
-                        <i class="fa fa-cart-shopping"></i> Users
+                        <i class="fa fa-user"></i> Users
                     </a>
                 </li>
             </ul>
