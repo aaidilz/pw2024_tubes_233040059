@@ -36,7 +36,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="nav-link text-white">
+                    <a href="../admin/inventorys.php" class="nav-link text-white">
                         <i class="fa fa-gamepad"></i> Applications
                     </a>
                 </li>

@@ -2,8 +2,7 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 'On');
 
-session_start();
-require '../../config/database/connection.php';
+require_once __DIR__ . '/../../config/database/connection.php';
 
 class RegisterController
 {
