@@ -12,7 +12,6 @@ class UserController
     {
         $this->conn = $conn;
     }
-
     public function getAllUsers()
     {
         $sql = "SELECT * FROM user";

@@ -50,9 +50,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <div class="form-group mb-3">
                     <label for="category_id">Kategori</label>
                     <select name="category_id" id="category_id" class="form-control" required>
-                        <option value="1">Makanan</option>
-                        <option value="2">Minuman</option>
-                        <option value="3">Peralatan</option>
+                        <option value="">Pilih Kategori</option>
+                        <?php
+                        $controller = new InventoryController($conn);
+                        $categories = $controller->getAllCategories();
+                        foreach ($categories as $category) {
+                            echo "<option value='" . $category['id'] . "'>" . $category['name'] . "</option>";
+                        }
+                        ?>
                     </select>
                 </div>
                 <button type="submit" class="btn btn-primary">Tambah</button>

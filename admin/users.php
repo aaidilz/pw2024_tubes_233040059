@@ -22,6 +22,7 @@ $users = $controller->getAllUsers();
             <table class="table table-bordered">
                 <thead>
                     <tr>
+                        <th>NO</th>
                         <th>Username</th>
                         <th>Email</th>
                         <th>Role</th>
@@ -29,8 +30,10 @@ $users = $controller->getAllUsers();
                     </tr>
                 </thead>
                 <tbody>
+                <?php $counter = 1;?>
                     <?php foreach ($users as $user): ?>
                         <tr>
+                            <td><?php echo $counter; ?></td>
                             <td><?php echo $user['username']; ?></td>
                             <td><?php echo $user['email']; ?></td>
                             <td><?php echo $user['role']; ?></td>
@@ -46,6 +49,7 @@ $users = $controller->getAllUsers();
                                 <?php endif; ?>
                             </td>
                         </tr>
+                        <?php $counter++; ?>
                     <?php endforeach; ?>
                 </tbody>
             </table>
