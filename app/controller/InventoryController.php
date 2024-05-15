@@ -50,6 +50,17 @@ class InventoryController
         header('Location: inventorys.php');
         exit();
     }
-
-
+    public function deleteInventory($inventory_id)
+    {
+        $sql = "DELETE FROM inventory WHERE inventory_id = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param('i', $inventory_id);
+        if ($stmt->execute()) {
+            $_SESSION['success_message'] = "Inventory deleted successfully!";
+        } else {
+            $_SESSION['error_message'] = "Failed to delete inventory!";
+        }
+        header('Location: inventorys.php');
+        exit();
+    }
 }
