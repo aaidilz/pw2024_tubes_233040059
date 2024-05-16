@@ -7,11 +7,11 @@ $controller = new InventoryController($conn);
 $categories = $controller->getAllCategories();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $nama = $_POST['nama'];
-    $kuantitas = $_POST['kuantitas'];
-    $harga = $_POST['harga'];
-    $kategori_id = $_POST['kategori'];
-    $gambar = $_FILES['gambar'];
+    $nama = htmlspecialchars($_POST['nama']);
+    $kuantitas = htmlspecialchars($_POST['kuantitas']);
+    $harga = htmlspecialchars($_POST['harga']);
+    $kategori_id = htmlspecialchars($_POST['kategori']);
+    $gambar = ($_FILES['gambar']);
 
     $controller->createInventory($nama, $kuantitas, $harga, $gambar, $kategori_id);
 }

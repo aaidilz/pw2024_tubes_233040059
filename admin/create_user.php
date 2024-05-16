@@ -4,10 +4,10 @@ require '../app/controller/UserController.php';
 require '../layout/admin/header.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-    $email = $_POST['email'];
-    $role = $_POST['role'];
+    $username = htmlspecialchars($_POST['username']);
+    $password = htmlspecialchars($_POST['password']);
+    $email = htmlspecialchars($_POST['email']);
+    $role = htmlspecialchars($_POST['role']);
 
     $controller = new UserController($conn);
     if ($controller->createUser($username, $password, $email, $role)) {

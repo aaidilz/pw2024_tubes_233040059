@@ -7,7 +7,7 @@ $controller = new CategoryController($conn);
 $categories = $controller->getAllCategories();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $nama = $_POST['nama'];
+    $nama = htmlspecialchars($_POST['nama']);
     $controller->createCategory($nama);
 }
 

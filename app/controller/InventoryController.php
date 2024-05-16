@@ -46,16 +46,13 @@ class InventoryController
 
     public function createInventory($nama, $kuantitas, $harga, $gambar, $kategori_id) {
         $target_dir = __DIR__ . '/../../uploads/';
-        $target_file = $target_dir . basename($gambar['name']);
+        $target_file = $target_dir . basename($gambar['name']); //anti path traversal
     
-        // Prepare the SQL statement
         $sql = "INSERT INTO inventory (nama, kuantitas, harga, gambar, kategori_id) VALUES (?, ?, ?, ?, ?)";
         $stmt = $this->conn->prepare($sql);
         $stmt->bind_param('siisi', $nama, $kuantitas, $harga, $gambar['name'], $kategori_id);
     
-        // Execute the statement
         if ($stmt->execute()) {
-            // Move the uploaded file
             if (move_uploaded_file($gambar['tmp_name'], $target_file)) {
                 $_SESSION['success_message'] = 'Inventory berhasil ditambahkan';
                 header('Location: inventory.php');

@@ -6,9 +6,9 @@ require '../app/controller/UserController.php';
 $controller = new UserController($conn);
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $id = $_POST['id'];
-    $username = $_POST['username'];
-    $role = $_POST['role'];
+    $id = htmlspecialchars($_POST['id']);
+    $username = htmlspecialchars($_POST['username']);
+    $role = htmlspecialchars($_POST['role']);
 
     if ($controller->updateUser($id, $username, $role)) {
         header("Location: users.php");
