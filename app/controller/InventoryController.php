@@ -2,6 +2,10 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 'On');
 
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 require_once __DIR__ . '/../../config/database/connection.php';
 
 class InventoryController
