@@ -30,6 +30,7 @@ class InventoryController
         }
         return $inventory;
     }
+
     public function getAllCategories()
     {
         $sql = "SELECT * FROM kategori";
@@ -44,7 +45,8 @@ class InventoryController
         return $categories;
     }
 
-    public function createInventory($nama, $kuantitas, $harga, $gambar, $kategori_id) {
+    public function createInventory($nama, $kuantitas, $harga, $gambar, $kategori_id)
+    {
         $target_dir = __DIR__ . '/../../uploads/';
         $target_file = $target_dir . basename($gambar['name']);
 
@@ -82,7 +84,7 @@ class InventoryController
         $sql = "INSERT INTO inventory (nama, kuantitas, harga, gambar, kategori_id) VALUES (?, ?, ?, ?, ?)";
         $stmt = $this->conn->prepare($sql);
         $stmt->bind_param('siisi', $nama, $kuantitas, $harga, $gambar['name'], $kategori_id);
-    
+
         if ($stmt->execute()) {
             if (move_uploaded_file($gambar['tmp_name'], $target_file)) {
                 $_SESSION['success_message'] = 'Inventory berhasil ditambahkan';
@@ -112,5 +114,16 @@ class InventoryController
             return false;
         }
     }
-    
+
+    public function searchInventory($keyword)
+    {
+        $sql = "SELECT inventory.*, kategori.nama AS kategori_nama FROM inventory LEFT JOIN kategori ON inventory.kategori_id = kategori.id WHERE inventory.nama LIKE ?";
+        $stmt = $this->conn->prepare($sql);
+        $keyword = "%{$keyword}%";
+        $stmt->bind_param('s', $keyword);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
 }
