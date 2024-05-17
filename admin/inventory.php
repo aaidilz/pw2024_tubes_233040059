@@ -39,7 +39,7 @@ $inventories = $controller->getAllInventory();
                             <td><?php echo $inventory['kategori_nama']; ?></td>
                             <td>
                                 <a href="edit-inventory.php?id=<?php echo $inventory['id']; ?>" class="btn btn-warning">Edit</a>
-                                <a href="delete-inventory.php?id=<?php echo $inventory['id']; ?>" class="btn btn-danger">Hapus</a>
+                                <a href="delete_inventory.php?id=<?php echo $inventory['id']; ?>" class="btn btn-danger">Hapus</a>
                         </tr>
                         <?php $counter++; ?>
                     <?php endforeach; ?>

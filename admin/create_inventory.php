@@ -20,11 +20,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <div class="container mt-4">
     <div class="card w-75 mx-auto">
         <div class="card-header">
-            <h1>Tambah Pengguna Baru</h1>
+            <h1>Tambah inventaris baru</h1>
         </div>
         <div class="card-body">
-            <?php if (isset($error)): ?>
-                <div class="alert alert-danger"><?php echo $error; ?></div>
+            <?php if (isset($_SESSION['error_message'])): ?>
+                <div class="alert alert-danger"><?php echo $_SESSION['error_message']; ?></div>
+                <?php unset($_SESSION['error_message']); ?>
             <?php endif; ?>
             <form action="create_inventory.php" method="POST" enctype="multipart/form-data">
                 <div class="form-group mb-3">

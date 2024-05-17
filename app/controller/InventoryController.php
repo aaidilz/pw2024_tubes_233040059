@@ -46,8 +46,39 @@ class InventoryController
 
     public function createInventory($nama, $kuantitas, $harga, $gambar, $kategori_id) {
         $target_dir = __DIR__ . '/../../uploads/';
-        $target_file = $target_dir . basename($gambar['name']); //anti path traversal
-    
+        $target_file = $target_dir . basename($gambar['name']);
+
+        // cek file
+        if ($gambar['error'] !== 0) {
+            $_SESSION['error_message'] = 'Gagal mengupload gambar';
+            header('Location: create_inventory.php');
+            exit();
+        }
+
+        // validasi tipe file
+        $allowed_types = ['image/jpeg', 'image/png', 'image/jpg', 'image/gif'];
+        $file_type = mime_content_type($gambar['tmp_name']);
+        if (!in_array($file_type, $allowed_types)) {
+            $_SESSION['error_message'] = 'Tipe file tidak diizinkan';
+            header('Location: create_inventory.php');
+            exit();
+        }
+
+        // validasi ukuran file
+        $max_size = 1 * 1024 * 1024; // 5MB
+        if ($gambar['size'] > $max_size) {
+            $_SESSION['error_message'] = 'Ukuran file terlalu besar';
+            header('Location: create_inventory.php');
+            exit();
+        }
+
+        // validasi file adalah gambar
+        if (getimagesize($gambar['tmp_name']) === false) {
+            $_SESSION['error_message'] = 'File bukan gambar';
+            header('Location: create_inventory.php');
+            exit();
+        }
+
         $sql = "INSERT INTO inventory (nama, kuantitas, harga, gambar, kategori_id) VALUES (?, ?, ?, ?, ?)";
         $stmt = $this->conn->prepare($sql);
         $stmt->bind_param('siisi', $nama, $kuantitas, $harga, $gambar['name'], $kategori_id);
@@ -66,6 +97,19 @@ class InventoryController
             $_SESSION['error_message'] = 'Gagal menambahkan inventory';
             header('Location: create_inventory.php');
             exit();
+        }
+    }
+
+    public function deleteInventory($id)
+    {
+        $sql = "DELETE FROM inventory WHERE id = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param('i', $id);
+
+        if ($stmt->execute()) {
+            return true;
+        } else {
+            return false;
         }
     }
     
