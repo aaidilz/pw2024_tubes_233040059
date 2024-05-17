@@ -61,6 +61,7 @@ $inventories = $controller->searchInventory($keyword);
                             <?php $counter++; ?>
                         <?php endforeach; ?>
                     <?php endif; ?>
+                </tbody>
             </table>
         </div>
         <div class="card-footer">
