@@ -14,11 +14,25 @@
 
     <script>
         var swiper = new Swiper(".mySwiper", {
-            slidesPerView: 3, // Tampilkan 3 gambar secara default
-            spaceBetween: 15, // Spasi antara gambar
+            slidesPerView: 1,
+            spaceBetween: 15,
             navigation: {
                 nextEl: ".swiper-button-next",
                 prevEl: ".swiper-button-prev",
+            },
+            breakpoints: {
+                640: {
+                    slidesPerView: 1,
+                    spaceBetween: 20,
+                },
+                768: {
+                    slidesPerView: 2,
+                    spaceBetween: 30,
+                },
+                1024: {
+                    slidesPerView: 3,
+                    spaceBetween: 40,
+                },
             },
         });
     </script>
