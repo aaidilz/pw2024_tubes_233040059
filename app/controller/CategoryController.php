@@ -39,10 +39,10 @@ class CategoryController
         $stmt->bind_param('s', $nama);
         
         if ($stmt->execute()) {
-            $_SESSION['success'] = 'Kategori berhasil ditambahkan';
+            $_SESSION['success_message'] = 'Kategori berhasil ditambahkan';
             header('Location: category.php');
         } else {
-            $_SESSION['error'] = 'Kategori gagal ditambahkan';
+            $_SESSION['error_message'] = 'Kategori gagal ditambahkan';
             header('Location: category.php');
         }
     }
@@ -54,10 +54,10 @@ class CategoryController
         $stmt->bind_param('si', $nama, $id);
         
         if ($stmt->execute()) {
-            $_SESSION['success'] = 'Kategori berhasil diubah';
+            $_SESSION['success_message'] = 'Kategori berhasil diubah';
             header('Location: category.php');
         } else {
-            $_SESSION['error'] = 'Kategori gagal diubah';
+            $_SESSION['error_message'] = 'Kategori gagal diubah';
             header('Location: category.php');
         }
     }
@@ -69,7 +69,7 @@ class CategoryController
         $stmt->bind_param('i', $id);
         
         if ($stmt->execute()) {
-            $_SESSION['success'] = 'Kategori berhasil dihapus';
+            $_SESSION['success_message'] = 'Kategori berhasil dihapus';
             header('Location: category.php');
         } else {
             $_SESSION['error'] = 'Kategori gagal dihapus';
