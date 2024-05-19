@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: May 16, 2024 at 07:47 PM
+-- Generation Time: May 20, 2024 at 12:10 AM
 -- Server version: 8.0.36-0ubuntu0.22.04.1
 -- PHP Version: 8.1.2-1ubuntu2.17
 
@@ -43,7 +43,8 @@ CREATE TABLE `inventory` (
 --
 
 INSERT INTO `inventory` (`id`, `nama`, `kuantitas`, `harga`, `gambar`, `kategori_id`, `created_at`, `updated_at`) VALUES
-(1, 'aidil', 10, '1100.00', '1.png', 1, '2024-05-16 12:43:11', '2024-05-16 12:43:11');
+(1, 'aidil', 10, '1100.00', '1.png', 1, '2024-05-16 12:43:11', '2024-05-16 12:43:11'),
+(8, 'duar mewmew', 1, '1000000.00', 'download.jpg', 1, '2024-05-19 16:27:18', '2024-05-19 16:27:18');
 
 -- --------------------------------------------------------
 
@@ -61,7 +62,7 @@ CREATE TABLE `kategori` (
 --
 
 INSERT INTO `kategori` (`id`, `nama`) VALUES
-(1, '123');
+(1, 'water');
 
 -- --------------------------------------------------------
 
@@ -84,9 +85,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `username`, `password`, `email`, `role`, `created_at`, `updated_at`) VALUES
-(9, 'admin', '$2y$10$U.2hzzAHYUhvOFXKhijaw.Vmf99Qz0vMfj7yyTK5zMF99Iq2w1d22', 'admin@123', 'admin', '2024-05-15 04:04:56', '2024-05-16 08:45:20'),
-(12, 'asep', '$2y$10$3n0SGWbVCkPiQo9rbYaq8e7ZGHobt41QxLoK.o644XqPyMEn5jSpW', 'asep@mail.com', 'user', '2024-05-15 04:21:16', '2024-05-16 08:44:38'),
-(17, '123', '$2y$10$45K3itOh6rfXbTMErT66ZuYDL36UZggqfb4uA/7IJmGQxQ/6Mdq0m', '123@123', 'user', '2024-05-16 06:51:06', '2024-05-16 06:51:06');
+(1, 'admin', '$2y$10$Oz0V.5hhUeclNPeLGcCT6OzMruyA6xJ5o1alvM2OoQCnrHM2pzDyS', 'admin@example.com', 'admin', '2024-05-17 08:16:40', '2024-05-19 16:27:55'),
+(5, 'asep', '$2y$10$4GB3cYa3MDYOI5PCI3J63.5Qnqn9SkweKfbYxG8uM/6czx.fcmMGS', 'asep@mail', 'user', '2024-05-19 16:28:53', '2024-05-19 16:28:53');
 
 --
 -- Indexes for dumped tables
@@ -119,7 +119,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `inventory`
 --
 ALTER TABLE `inventory`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `kategori`
@@ -131,7 +131,7 @@ ALTER TABLE `kategori`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables

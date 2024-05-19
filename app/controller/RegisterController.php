@@ -60,17 +60,11 @@ class RegisterController
     }
 }
 
-// fungsi sanitasi input
-function validateInput($input)
-{
-    return htmlspecialchars((trim($input)));
-}
-
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $username = validateInput($_POST['username']);
-    $email = validateInput($_POST['email']);
-    $password = validateInput($_POST['password']);
-    $confirm_password = validateInput($_POST['confirm_password']);
+    $username = htmlspecialchars($_POST['username']);
+    $email = htmlspecialchars($_POST['email']);
+    $password = htmlspecialchars($_POST['password']);
+    $confirm_password = htmlspecialchars($_POST['confirm_password']);
 
 
     // check password confirmation

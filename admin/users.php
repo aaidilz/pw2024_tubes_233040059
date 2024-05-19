@@ -25,7 +25,7 @@ $users = $controller->getAllUsers();
                     </tr>
                 </thead>
                 <tbody>
-                <?php $counter = 1;?>
+                    <?php $counter = 1; ?>
                     <?php foreach ($users as $user): ?>
                         <tr>
                             <td><?php echo $counter; ?></td>
@@ -34,13 +34,13 @@ $users = $controller->getAllUsers();
                             <td><?php echo $user['role']; ?></td>
                             <td>
                                 <?php if ($user['role'] === 'admin'): ?>
-                                    <a href="edit_user.php?id=<?php echo $user['id']; ?>"
-                                        class="btn btn-warning btn-sm"><i class="fa fa-wrench"></i> Edit</a>
+                                    <a href="edit_user.php?id=<?php echo $user['id']; ?>" class="btn btn-warning btn-sm"><i
+                                            class="fa fa-wrench"></i> Edit</a>
                                 <?php else: ?>
-                                    <a href="edit_user.php?id=<?php echo $user['id']; ?>"
-                                        class="btn btn-warning btn-sm"><i class="fa fa-wrench"></i> Edit</a>
-                                    <a href="delete_user.php?id=<?php echo $user['id']; ?>"
-                                        class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Hapus</a>
+                                    <a href="edit_user.php?id=<?php echo $user['id']; ?>" class="btn btn-warning btn-sm"><i
+                                            class="fa fa-wrench"></i> Edit</a>
+                                    <a href="delete_user.php?id=<?php echo $user['id']; ?>" class="btn btn-danger btn-sm"><i
+                                            class="fa fa-trash"></i> Hapus</a>
                                 <?php endif; ?>
                             </td>
                         </tr>
@@ -48,7 +48,10 @@ $users = $controller->getAllUsers();
                     <?php endforeach; ?>
                 </tbody>
             </table>
-            <a href="create_user.php" class="btn btn-primary mb-3"><i class="fa fa-plus"></i> Tambah Pengguna Baru</a>
+        </div>
+        <div class="card-footer">
+            <a href="create_user.php" class="btn btn-primary mb-3"><i class="fa fa-plus"></i> Tambah Pengguna
+                Baru</a>
         </div>
     </div>
 </div>

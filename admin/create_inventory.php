@@ -7,11 +7,11 @@ $controller = new InventoryController($conn);
 $categories = $controller->getAllCategories();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $nama = $_POST['nama'];
-    $kuantitas = $_POST['kuantitas'];
-    $harga = $_POST['harga'];
-    $kategori_id = $_POST['kategori'];
-    $gambar = $_FILES['gambar'];
+    $nama = htmlspecialchars($_POST['nama']);
+    $kuantitas = htmlspecialchars($_POST['kuantitas']);
+    $harga = htmlspecialchars($_POST['harga']);
+    $kategori_id = htmlspecialchars($_POST['kategori']);
+    $gambar = ($_FILES['gambar']);
 
     $controller->createInventory($nama, $kuantitas, $harga, $gambar, $kategori_id);
 }
@@ -20,11 +20,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <div class="container mt-4">
     <div class="card w-75 mx-auto">
         <div class="card-header">
-            <h1>Tambah Pengguna Baru</h1>
+            <h1>Tambah inventaris baru</h1>
         </div>
         <div class="card-body">
-            <?php if (isset($error)): ?>
-                <div class="alert alert-danger"><?php echo $error; ?></div>
+            <?php if (isset($_SESSION['error_message'])): ?>
+                <div class="alert alert-danger"><?php echo $_SESSION['error_message']; ?></div>
+                <?php unset($_SESSION['error_message']); ?>
             <?php endif; ?>
             <form action="create_inventory.php" method="POST" enctype="multipart/form-data">
                 <div class="form-group mb-3">
@@ -58,3 +59,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </div>
 </div>
 
+<?php
+require '../layout/admin/footer.php';
+?>

@@ -10,3 +10,4 @@ if ($controller->deleteUser($id)) {
 } else {
     echo "Gagal menghapus pengguna.";
 }
+

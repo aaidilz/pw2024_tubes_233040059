@@ -46,8 +46,8 @@ class LoginController
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
+    $username = htmlspecialchars($_POST['username']);
+    $password = htmlspecialchars($_POST['password']);
 
     $controller = new LoginController($conn);
     $controller->login($username, $password);

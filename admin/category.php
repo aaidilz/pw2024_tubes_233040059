@@ -7,7 +7,7 @@ $controller = new CategoryController($conn);
 $categories = $controller->getAllCategories();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $nama = $_POST['nama'];
+    $nama = htmlspecialchars($_POST['nama']);
     $controller->createCategory($nama);
 }
 
@@ -23,6 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <tr>
                         <th>#</th>
                         <th>Nama</th>
+                        <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -30,7 +31,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <tr>
                             <td><?php echo $index + 1; ?></td>
                             <td><?php echo $category['nama']; ?></td>
-                        </tr>
+                            <td>
+                                <a href="edit_category.php?id=<?php echo $category['id']; ?>" class="btn btn-warning">Edit</a>                        </tr>
                     <?php endforeach; ?>
                 </tbody>
             </table>
@@ -57,3 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
     </div>
 </div>
+
+<?php
+require '../layout/admin/footer.php';
+?>

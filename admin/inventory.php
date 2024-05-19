@@ -1,21 +1,18 @@
 <?php
-
 require '../config/protected.php';
 require '../layout/admin/header.php';
-require '../app/controller/InventoryController.php';
-
-$controller = new InventoryController($conn);
-$inventories = $controller->getAllInventory();
 ?>
 
-<!-- isi -->
 <div class="container mt-4">
     <div class="card">
         <div class="card-header">
             <h1>Manajemen Inventory</h1>
         </div>
         <div class="card-body">
-            <table class="table table-bordered">
+            <table class="table table-bordered" id="inventoryTable">
+                <div class="input-group mb-3 w-25">
+                    <input type="text" class="form-control" id="search" placeholder="Cari Nama Inventory">
+                </div>
                 <thead>
                     <tr>
                         <th>NO</th>
@@ -28,21 +25,30 @@ $inventories = $controller->getAllInventory();
                     </tr>
                 </thead>
                 <tbody>
-                    <?php $counter = 1; ?>
-                    <?php foreach ($inventories as $inventory) : ?>
+                    <?php if (empty($inventories)): ?>
                         <tr>
-                            <td><?php echo $counter; ?></td>
-                            <td><img src="../uploads/<?php echo $inventory['gambar']; ?>" alt="" style="width: 100px;"></td>
-                            <td><?php echo $inventory['nama']; ?></td>
-                            <td><?php echo $inventory['kuantitas']; ?></td>
-                            <td><?php echo $inventory['harga']; ?></td>
-                            <td><?php echo $inventory['kategori_nama']; ?></td>
-                            <td>
-                                <a href="edit-inventory.php?id=<?php echo $inventory['id']; ?>" class="btn btn-warning">Edit</a>
-                                <a href="delete-inventory.php?id=<?php echo $inventory['id']; ?>" class="btn btn-danger">Hapus</a>
+                            <td colspan="7" class="text-center">Tidak ada data</td>
                         </tr>
-                        <?php $counter++; ?>
-                    <?php endforeach; ?>
+                    <?php else: ?>
+                        <?php $counter = 1; ?>
+                        <?php foreach ($inventories as $inventory): ?>
+                            <tr>
+                                <td><?php echo $counter; ?></td>
+                                <td><img src="../uploads/<?php echo $inventory['gambar']; ?>" alt="" style="width: 100px;"></td>
+                                <td><?php echo $inventory['nama']; ?></td>
+                                <td><?php echo $inventory['kuantitas']; ?></td>
+                                <td><?php echo $inventory['harga']; ?></td>
+                                <td><?php echo $inventory['kategori_nama']; ?></td>
+                                <td>
+                                    <a href="edit_inventory.php?id=<?php echo $inventory['id']; ?>"
+                                        class="btn btn-warning">Edit</a>
+                                    <a href="delete_inventory.php?id=<?php echo $inventory['id']; ?>"
+                                        class="btn btn-danger">Hapus</a>
+                                </td>
+                            </tr>
+                            <?php $counter++; ?>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
             </table>
         </div>
         <div class="card-footer">
@@ -51,6 +57,36 @@ $inventories = $controller->getAllInventory();
         </div>
     </div>
 </div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+    integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    $(document).ready(function () {
+        // Pencarian pertama kali halaman dimuat
+        searchInventory("");
+
+        // Fungsi untuk melakukan pencarian
+        function searchInventory(query) {
+            $.ajax({
+                url: "../../app/controller/GetInventoryController.php",
+                method: "POST",
+                data: { query: query },
+                success: function (data) {
+                    $("#inventoryTable tbody").html(data);
+                }
+            });
+        }
+
+        // Event listener untuk memicu pencarian saat pengguna mengetik
+        $("#search").on("keyup", function () {
+            var query = $(this).val();
+            searchInventory(query);
+        });
+    });
+
+</script>
 
 <?php
 require '../layout/admin/footer.php';
