@@ -59,3 +59,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </div>
 </div>
 
+<?php
+require '../layout/admin/footer.php';
+?>

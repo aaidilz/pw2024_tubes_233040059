@@ -32,6 +32,18 @@ class CategoryController
         return $categories;
     }
 
+    public function getCategoryById($id)
+    {
+        $sql = "SELECT * FROM kategori WHERE id = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param('i', $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+        
+        return $result->fetch_assoc();
+    }
+    
     public function createCategory($nama)
     {
         $sql = "INSERT INTO kategori (nama) VALUES (?)";
