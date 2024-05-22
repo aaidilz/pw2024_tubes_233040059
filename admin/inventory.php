@@ -10,18 +10,24 @@ require '../layout/admin/header.php';
         </div>
         <div class="card-body">
             <table class="table table-bordered" id="inventoryTable">
-                <div class="input-group mb-3 w-25">
-                    <input type="text" class="form-control" id="search" placeholder="Cari Nama Inventory">
-                    <select class="form-control ml-2" id="orderColumn">
-                        <option value="nama">Nama</option>
-                        <option value="kuantitas">Kuantitas</option>
-                        <option value="harga">Harga</option>
-                        <option value="kategori_nama">Kategori</option>
-                    </select>
-                    <select class="form-control ml-2" id="orderDirection">
-                        <option value="ASC">Ascending</option>
-                        <option value="DESC">Descending</option>
-                    </select>
+                <div class="container d-flex">
+                    <div class="input-group mb-3 w-75">
+                        <input type="text" class="form-control" id="search" placeholder="Cari Nama Inventory">
+                    </div>
+                    <div class="input-group mb-3 w-25">
+                        <select class="form-control" id="orderColumn">
+                            <option value="nama">Nama</option>
+                            <option value="kuantitas">Kuantitas</option>
+                            <option value="harga">Harga</option>
+                            <option value="kategori_nama">Kategori</option>
+                        </select>
+                    </div>
+                    <div class="input-group mb-3 w-25">
+                        <select class="form-control" id="orderDirection">
+                            <option value="ASC">Ascending</option>
+                            <option value="DESC">Descending</option>
+                        </select>
+                    </div>
                 </div>
                 <thead>
                     <tr>
