@@ -56,7 +56,7 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <!-- Isi dropdown menu di sini -->
-                            <a class="dropdown-item" href="#">Setting</a>
+                            <a class="dropdown-item" href="../admin/profile.php">Setting</a>
                         </div>
                     </li>
                     <li class="nav-item">
