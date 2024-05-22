@@ -73,37 +73,62 @@ $inventories = $controller->getAllInventory();
 </section>
 
 <section>
-  <div class="container mb-3 text-white">
-    <h4>Recent added!</h4>
-  </div>
-</section>
-
-<section>
   <div class="container">
+    <div class="mb-3 text-white">
+      <h4>Recent added!</h4>
+    </div>
     <div class="row row-cols-2 row-cols-md-6">
       <?php
-      $count = 0;
-      foreach ($inventories as $inventory) {
-        if ($count >= 5) {
-          break;
-        }
+      if (empty($inventories)) {
+        // Jika tidak ada data dalam $inventories
         ?>
         <div class="col">
-          <div class="custom-card bg-dark text-white">
-            <a href="#">
-              <img src="uploads/<?php echo $inventory['gambar']; ?>" class="card-img-top">
-            </a>
-          </div>
-          <div class="custom-card-text">
-            <a href="#" class="text-decoration-none">
-              <h5 class="card-title text-white"><?php echo $inventory['nama']; ?></h5>
-            </a>
+          <div class="card text-center" style="width: 10rem;">
+            <div class="card-body">
+              <h5 class="card-title">gak ada data terbaru :(</h5>
+            </div>
           </div>
         </div>
         <?php
-        $count++;
+      } else {
+        usort($inventories, function ($a, $b) {
+          $dateA = isset ($a['created_at']) ? strtotime($a['created_at']) : strtotime($a['updated_at']);
+          $dateB = isset ($b['created_at']) ? strtotime($b['created_at']) : strtotime($b['updated_at']);
+          return $dateB - $dateA;
+        });
+        $count = 0;
+        foreach ($inventories as $inventory) {
+          if ($count >= 5) {
+            break;
+          }
+          ?>
+          <div class="col">
+            <div class="custom-card text-white">
+              <a href="#">
+                <img src="uploads/<?php echo $inventory['gambar']; ?>" class="card-img-top">
+              </a>
+            </div>
+            <div class="custom-card-text">
+              <a href="#" class="text-decoration-none">
+                <h5 class="card-title text-white"><?php echo $inventory['nama']; ?></h5>
+              </a>
+            </div>
+          </div>
+          <?php
+          $count++;
+        }
       }
       ?>
     </div>
   </div>
+</section>
+
+<section>
+  <br>
+  <br>
+  <br>
+</section>
+
+<section>
+  <!-- next isi semua inventory -->
 </section>
