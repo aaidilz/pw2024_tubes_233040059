@@ -30,4 +30,19 @@ class IndexController
         }
         return $inventories;
     }
+
+    // get all categories
+    public function getAllCategories()
+    {
+        $sql = "SELECT * FROM kategori";
+        $result = $this->conn->query($sql);
+
+        $categories = [];
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $categories[] = $row;
+            }
+        }
+        return $categories;
+    }
 }

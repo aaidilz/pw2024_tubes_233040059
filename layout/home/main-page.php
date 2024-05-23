@@ -27,7 +27,7 @@ $inventories = $controller->getAllInventory();
           <p class="text-white fs-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem ullam officia
             laudantium illo dignissimos est atque maxime velit dicta magnam.</p>
           <!-- button -->
-          <a href="login.php" class="btn btn-warning mt-4">GET STARTED</a>
+          <a href="login.php" class="btn btn-primary mt-4">GET STARTED</a>
         </div>
       </div>
       <div class="col-md-6">
@@ -130,5 +130,37 @@ $inventories = $controller->getAllInventory();
 </section>
 
 <section>
-  <!-- next isi semua inventory -->
+  <div class="container mb-3">
+    <div class="mb-3 text-white">
+      <h4>Carilah barang kesukaan mu!</h4>
+    </div>
+    <div class="mb-3 text-white">
+      <form class="d-flex">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-light" type="submit">Search</button>
+      </form>
+    </div>
+    <div class="d-flex flex-wrap">
+        <button class="btn btn-primary m-1">Kategori 1</button>
+        <button class="btn btn-primary m-1">Kategori 2</button>
+        <button class="btn btn-primary m-1">Kategori 3</button>
+        <button class="btn btn-primary m-1">Kategori 4</button>
+      </div>
+  </div>
+
+  <!--  bagian items -->
+  <div class="container">
+    <div class="row pb-5 mb-4">
+      <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+        <!-- Card-->
+        <div class="card rounded shadow-sm border-0">
+          <div class="card-body p-4"><img src="uploads/664eabbedd81e.png" alt="" class="img-fluid d-block mx-auto mb-3">
+            <h5> <a href="#" class="text-dark">Awesome product</a></h5>
+            <p class="small text-muted font-italic">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
 </section>

@@ -18,7 +18,7 @@ if (isset($_SESSION['success_message'])) {
       <div class="row">
         <div class="col-sm-6 text-black">
           <div class="px-5 ms-xl-4 text-warning">
-            <i class="fas fa-layer-group fa-2x me-3 pt-5 mt-xl-4 text-warning"> STACKED</i>
+            <i class="fas fa-layer-group fa-2x me-3 pt-5 mt-xl-4 text-warning"> <span class="text-white">STACKED</span></i>
           </div>
           <div class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5 text-white">
             <form action="../app/controller/LoginController.php" method="POST">
