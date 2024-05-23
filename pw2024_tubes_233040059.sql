@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: May 20, 2024 at 12:10 AM
+-- Generation Time: May 23, 2024 at 09:56 AM
 -- Server version: 8.0.36-0ubuntu0.22.04.1
 -- PHP Version: 8.1.2-1ubuntu2.17
 
@@ -43,8 +43,16 @@ CREATE TABLE `inventory` (
 --
 
 INSERT INTO `inventory` (`id`, `nama`, `kuantitas`, `harga`, `gambar`, `kategori_id`, `created_at`, `updated_at`) VALUES
-(1, 'aidil', 10, '1100.00', '1.png', 1, '2024-05-16 12:43:11', '2024-05-16 12:43:11'),
-(8, 'duar mewmew', 1, '1000000.00', 'download.jpg', 1, '2024-05-19 16:27:18', '2024-05-19 16:27:18');
+(31, 'Guar Gura', 10, '250000.00', '664eabbedd81e.png', 2, '2024-05-23 02:36:46', '2024-05-23 02:36:46'),
+(32, 'Maid costume', 10, '300000.00', '664eac20b589b.jpg', 2, '2024-05-23 02:38:24', '2024-05-23 02:49:44'),
+(33, 'Kimetsu Key Chain', 10, '10000.00', '664eac4b1d887.jpg', 1, '2024-05-23 02:39:07', '2024-05-23 02:39:07'),
+(34, 'Hokage Cosplay Costume', 10, '350000.00', '664eac89a4603.jpg', 2, '2024-05-23 02:40:09', '2024-05-23 02:48:59'),
+(36, 'Oshi No Ko Ruby Keychain', 10, '7500.00', '664ead6ae0b89.png', 1, '2024-05-23 02:43:54', '2024-05-23 02:43:54'),
+(37, 'Chika Stiker', 20, '500.00', '664eadc0ca6e9.png', 5, '2024-05-23 02:45:20', '2024-05-23 02:45:20'),
+(38, 'Umaru Chan Stiker', 25, '500.00', '664eadf91793f.png', 5, '2024-05-23 02:46:17', '2024-05-23 02:46:17'),
+(39, 'Raiden Shogun Costume', 5, '550000.00', '664eaf27603d2.jpg', 2, '2024-05-23 02:48:47', '2024-05-23 02:51:19'),
+(40, 'Arknight Keychain Pack', 15, '75000.00', '664eafab10fd3.jpg', 1, '2024-05-23 02:53:31', '2024-05-23 02:53:31'),
+(41, 'Kalsit purba :P Poster', 10, '15000.00', '664eaffc74ff4.jpg', 3, '2024-05-23 02:54:52', '2024-05-23 02:55:15');
 
 -- --------------------------------------------------------
 
@@ -62,7 +70,10 @@ CREATE TABLE `kategori` (
 --
 
 INSERT INTO `kategori` (`id`, `nama`) VALUES
-(1, 'water');
+(1, 'Accessories'),
+(2, 'Kostum'),
+(3, 'Poster'),
+(5, 'Sticker');
 
 -- --------------------------------------------------------
 
@@ -85,8 +96,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `username`, `password`, `email`, `role`, `created_at`, `updated_at`) VALUES
-(1, 'admin', '$2y$10$Oz0V.5hhUeclNPeLGcCT6OzMruyA6xJ5o1alvM2OoQCnrHM2pzDyS', 'admin@example.com', 'admin', '2024-05-17 08:16:40', '2024-05-19 16:27:55'),
-(5, 'asep', '$2y$10$4GB3cYa3MDYOI5PCI3J63.5Qnqn9SkweKfbYxG8uM/6czx.fcmMGS', 'asep@mail', 'user', '2024-05-19 16:28:53', '2024-05-19 16:28:53');
+(1, 'admin', '$2y$10$X0mvG7pC.GCg9v/zvSMci.VaZyqQ8tLkXAZxJTCrXNy2DfU6kxg6C', 'admin@example.com', 'admin', '2024-05-17 08:16:40', '2024-05-23 02:22:53'),
+(8, 'asep', '$2y$10$YmH5F5uf0L.S9vGSWIDgVOH.epbbx/A5bD3.03E1RG82cfVbrF4c.', 'asep@asep', 'user', '2024-05-23 02:22:36', '2024-05-23 02:22:36');
 
 --
 -- Indexes for dumped tables
@@ -119,19 +130,19 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `inventory`
 --
 ALTER TABLE `inventory`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT for table `kategori`
 --
 ALTER TABLE `kategori`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Constraints for dumped tables

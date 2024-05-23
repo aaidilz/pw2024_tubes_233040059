@@ -39,7 +39,8 @@ $users = $controller->getAllUsers();
                                 <?php else: ?>
                                     <a href="edit_user.php?id=<?php echo $user['id']; ?>" class="btn btn-warning btn-sm"><i
                                             class="fa fa-wrench"></i> Edit</a>
-                                    <a href="delete_user.php?id=<?php echo $user['id']; ?>" class="btn btn-danger btn-sm"><i
+                                    <a href="delete_user.php?id=<?php echo $user['id']; ?>" class="btn btn-danger btn-sm"
+                                        onclick="return confirm('Apakah anda yakin ingin menghapus kategori ini?')"><i
                                             class="fa fa-trash"></i> Hapus</a>
                                 <?php endif; ?>
                             </td>

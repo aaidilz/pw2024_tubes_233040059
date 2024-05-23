@@ -58,8 +58,8 @@ require '../layout/admin/header.php';
                                 <td>
                                     <a href="edit_inventory.php?id=<?php echo $inventory['id']; ?>"
                                         class="btn btn-warning">Edit</a>
-                                    <a href="delete_inventory.php?id=<?php echo $inventory['id']; ?>"
-                                        class="btn btn-danger">Hapus</a>
+                                    <a href="delete_inventory.php?id=<?php echo $inventory['id']; ?>" class="btn btn-danger"
+                                        onclick="return confirm('Apakah anda yakin ingin menghapus inventory ini?')">Hapus</a>
                                 </td>
                             </tr>
                             <?php $counter++; ?>

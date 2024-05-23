@@ -75,17 +75,36 @@ class CategoryController
     }
 
     public function deleteCategory($id)
-    {
+{
+    $count = 0;
+    // Periksa apakah kategori sedang digunakan oleh inventory
+    $sql = "SELECT COUNT(*) FROM inventory WHERE kategori_id = ?";
+    $stmt = $this->conn->prepare($sql);
+    $stmt->bind_param('i', $id);
+    $stmt->execute();
+    $stmt->bind_result($count);
+    $stmt->fetch();
+    $stmt->close();
+
+    if ($count > 0) {
+        // Jika kategori digunakan oleh inventory, berikan pesan kesalahan
+        $_SESSION['error_message'] = 'Kategori ini sedang digunakan oleh satu atau lebih inventory dan tidak bisa dihapus';
+        header('Location: category.php');
+        exit();
+    } else {
+        // Jika kategori tidak digunakan, lanjutkan penghapusan
         $sql = "DELETE FROM kategori WHERE id = ?";
         $stmt = $this->conn->prepare($sql);
         $stmt->bind_param('i', $id);
-        
+
         if ($stmt->execute()) {
             $_SESSION['success_message'] = 'Kategori berhasil dihapus';
-            header('Location: category.php');
         } else {
-            $_SESSION['error'] = 'Kategori gagal dihapus';
-            header('Location: category.php');
+            $_SESSION['error_message'] = 'Kategori gagal dihapus';
         }
+        header('Location: category.php');
+        exit();
     }
+}
+
 }
