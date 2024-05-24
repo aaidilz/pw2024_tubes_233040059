@@ -33,5 +33,12 @@ class OrderController{
         return $stmt->get_result()->fetch_assoc();
     }
 
-
+    // add to order
+    public function addToCart($user_id, $inventory_id, $quantity, $total_price, $name, $email, $address, $paymentMethod) {
+        $sql = "INSERT INTO orders (user_id, inventory_id, quantity, total_price, name, email, address, paymentMethod) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param('iiidsdss', $user_id, $inventory_id, $quantity, $total_price, $name, $email, $address, $paymentMethod);
+        return $stmt->execute();
+    }
+    
 }
