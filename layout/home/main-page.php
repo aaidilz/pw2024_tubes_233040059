@@ -9,6 +9,7 @@ require 'app/controller/IndexController.php';
 
 $controller = new IndexController($conn);
 $inventories = $controller->getAllInventory();
+$categories = $controller->getAllCategory();
 ?>
 
 <section>
@@ -130,37 +131,68 @@ $inventories = $controller->getAllInventory();
 </section>
 
 <section>
+  <!-- bagian search -->
   <div class="container mb-3">
     <div class="mb-3 text-white">
       <h4>Carilah barang kesukaan mu!</h4>
     </div>
+
     <div class="mb-3 text-white">
       <form class="d-flex">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-light" type="submit">Search</button>
       </form>
     </div>
+
     <div class="d-flex flex-wrap">
-        <button class="btn btn-primary m-1">Kategori 1</button>
-        <button class="btn btn-primary m-1">Kategori 2</button>
-        <button class="btn btn-primary m-1">Kategori 3</button>
-        <button class="btn btn-primary m-1">Kategori 4</button>
-      </div>
+      <!-- foreach category -->
+      <?php if (empty($categories)) { ?>
+        <div class="card text-center" style="width: 10rem;">
+          <div class="card-body">
+            <h5 class="card-title">gak ada data :(</h5>
+          </div>
+        </div>
+      <?php } else {
+        foreach ($categories as $category) {
+          ?>
+          <button class="btn btn-primary m-1"><?php echo $category['nama'] ?></button>
+          <?php
+        }
+      }
+      ?>
+    </div>
   </div>
 
   <!--  bagian items -->
-  <div class="container">
+  <div class="container justify-content-center">
     <div class="row pb-5 mb-4">
-      <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
-        <!-- Card-->
-        <div class="card rounded shadow-sm border-0">
-          <div class="card-body p-4"><img src="uploads/664eabbedd81e.png" alt="" class="img-fluid d-block mx-auto mb-3">
-            <h5> <a href="#" class="text-dark">Awesome product</a></h5>
-            <p class="small text-muted font-italic">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-
+      <?php if (empty($inventories)) { ?>
+        <div class="col-12">
+          <div class="card text-center" style="width: 10rem;">
+            <div class="card-body">
+              <h5 class="card-title">gak ada data :(</h5>
+            </div>
           </div>
         </div>
-      </div>
-
+      <?php } else {
+        foreach ($inventories as $inventory) {
+          ?>
+          <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card rounded shadow-sm border-0">
+              <div class="card-body p-4">
+                <div class="card-img-wrapper">
+                  <img src="uploads/<?php echo $inventory['gambar']; ?>" alt="" class="img-fluid d-block mx-auto mb-3">
+                </div>
+                <h5><a href="#" class="text-dark"><?php echo $inventory['nama']; ?></a></h5>
+                <p class="small text-muted font-italic">Stock: <?php echo $inventory['kuantitas']; ?></p>
+                <h4>Rp<?php echo $inventory['harga']; ?></h4>
+              </div>
+            </div>
+          </div>
+          <?php
+        }
+      }
+      ?>
     </div>
+  </div>
 </section>

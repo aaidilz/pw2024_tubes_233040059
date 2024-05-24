@@ -32,7 +32,7 @@ class IndexController
     }
 
     // get all categories
-    public function getAllCategories()
+    public function getAllCategory()
     {
         $sql = "SELECT * FROM kategori";
         $result = $this->conn->query($sql);
