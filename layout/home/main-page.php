@@ -131,68 +131,80 @@ $categories = $controller->getAllCategory();
 </section>
 
 <section>
-  <!-- bagian search -->
   <div class="container mb-3">
     <div class="mb-3 text-white">
       <h4>Carilah barang kesukaan mu!</h4>
     </div>
 
     <div class="mb-3 text-white">
-      <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+      <form class="d-flex" id="searchForm">
+        <input class="form-control me-2" type="search" id="searchInput" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-light" type="submit">Search</button>
       </form>
     </div>
 
     <div class="d-flex flex-wrap">
       <!-- foreach category -->
-      <?php if (empty($categories)) { ?>
-        <div class="card text-center" style="width: 10rem;">
-          <div class="card-body">
-            <h5 class="card-title">gak ada data :(</h5>
-          </div>
-        </div>
-      <?php } else {
-        foreach ($categories as $category) {
-          ?>
-          <button class="btn btn-primary m-1"><?php echo $category['nama'] ?></button>
-          <?php
-        }
-      }
-      ?>
+      <?php foreach ($categories as $category) { ?>
+        <button class="btn btn-primary m-1 category-btn"
+          data-id="<?php echo $category['id']; ?>"><?php echo $category['nama']; ?></button> <?php } ?>
     </div>
   </div>
 
-  <!--  bagian items -->
   <div class="container justify-content-center">
-    <div class="row pb-5 mb-4">
-      <?php if (empty($inventories)) { ?>
-        <div class="col-12">
-          <div class="card text-center" style="width: 10rem;">
-            <div class="card-body">
-              <h5 class="card-title">gak ada data :(</h5>
+    <div class="row pb-5 mb-4" id="inventoryItems">
+      <?php foreach ($inventories as $inventory) { ?>
+        <div class="col-lg-4 col-md-6 mb-4">
+          <div class="card rounded shadow-sm border-0">
+            <div class="card-body p-4">
+              <div class="card-img-wrapper">
+                <img src="uploads/<?php echo $inventory['gambar']; ?>" alt="" class="img-fluid d-block mx-auto mb-3">
+              </div>
+              <h5>
+                <a href="orders.php?id=<?php echo $inventory['id']; ?>"
+                  class="text-dark"><?php echo $inventory['nama']; ?></a>
+              </h5>
+              <p class="small text-muted font-italic">Stock: <?php echo $inventory['kuantitas']; ?></p>
+              <h4>Rp <?php echo $inventory['harga']; ?></h4>
             </div>
           </div>
         </div>
-      <?php } else {
-        foreach ($inventories as $inventory) {
-          ?>
-          <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card rounded shadow-sm border-0">
-              <div class="card-body p-4">
-                <div class="card-img-wrapper">
-                  <img src="uploads/<?php echo $inventory['gambar']; ?>" alt="" class="img-fluid d-block mx-auto mb-3">
-                </div>
-                <h5><a href="#" class="text-dark"><?php echo $inventory['nama']; ?></a></h5>
-                <p class="small text-muted font-italic">Stock: <?php echo $inventory['kuantitas']; ?></p>
-                <h4>Rp<?php echo $inventory['harga']; ?></h4>
-              </div>
-            </div>
-          </div>
-          <?php
-        }
-      }
-      ?>
+      <?php } ?>
     </div>
   </div>
 </section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+  integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+  crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script>
+  $(document).ready(function () {
+    // init first search 
+    // Event listener for search form submission
+    $('#searchForm').on('submit', function (e) {
+      e.preventDefault();
+      searchInventory($('#searchInput').val(), 'nama');
+    });
+
+    // Event listener for category buttons
+    $('.category-btn').on('click', function () {
+      searchInventory('', 'kategori_id', $(this).data('id'));
+    });
+  });
+
+  function searchInventory(query, column, categoryId) {
+    $.ajax({
+      url: '../app/controller/GetIndexController.php',
+      method: 'POST',
+      data: {
+        query: query,
+        column: column,
+        categoryId: categoryId
+      },
+      success: function (data) {
+        $('#inventoryItems').html(data);
+      }
+    });
+  }
+</script>
