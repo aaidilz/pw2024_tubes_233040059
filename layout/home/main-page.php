@@ -105,12 +105,12 @@ $categories = $controller->getAllCategory();
           ?>
           <div class="col">
             <div class="custom-card text-white">
-              <a href="#">
+              <a href="orders.php?id=<?php echo $inventory['id']; ?>">
                 <img src="uploads/<?php echo $inventory['gambar']; ?>" class="card-img-top">
               </a>
             </div>
             <div class="custom-card-text">
-              <a href="#" class="text-decoration-none">
+              <a href="orders.php?id=<?php echo $inventory['id']; ?>" class="text-decoration-none">
                 <h5 class="card-title text-white"><?php echo $inventory['nama']; ?></h5>
               </a>
             </div>

@@ -45,4 +45,16 @@ class IndexController
         }
         return $categories;
     }
+
+    // get inventory by id
+    public function getInventoryById($id)
+    {
+        $sql = "SELECT * FROM inventory WHERE id = $id";
+        $result = $this->conn->query($sql);
+
+        if ($result->num_rows > 0) {
+            return $result->fetch_assoc();
+        }
+        return null;
+    }
 }
