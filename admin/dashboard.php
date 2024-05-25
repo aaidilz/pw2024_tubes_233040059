@@ -34,11 +34,14 @@ $total_inventory = $controller_order->getTotalInventory();
             <div class="card text-white bg-success" style="max-width: 18rem;">
                 <div class="card-header">Total Sales</div>
                 <div class="card-body">
-                    <h5 class="card-title">Rp <?php echo number_format($total_sales['total_sales'], 0, ',', '.'); ?>
+                    <h5 class="card-title">
+                        Rp
+                        <?php echo ($total_sales['total_sales'] == 0) ? '0' : number_format($total_sales['total_sales'], 0, ',', '.'); ?>
                     </h5>
                 </div>
             </div>
         </div>
+
         <!-- total inventory -->
         <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-3">
             <div class="card text-white bg-warning" style="max-width: 18rem;">
