@@ -73,6 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 <input type="password" name="confirm_password" id="confirm_password"
                                     class="form-control border border-light" required>
                             </div>
+                            <a href="index.php" class="btn btn-secondary mt-3">Kembali</a>
                             <button type="submit" class="btn btn-primary mt-3">Update</button>
                         </form>
                     </div>

@@ -53,6 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <label for="confirm_password">Confirm Password</label>
                     <input type="password" name="confirm_password" id="confirm_password" class="form-control" required>
                 </div>
+                <a href="dashboard.php" class="btn btn-secondary">Kembali</a>
                 <button type="submit" class="btn btn-primary">Update</button>
             </form>
         </div>

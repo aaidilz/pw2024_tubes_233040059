@@ -95,7 +95,16 @@ $kuantitas = htmlspecialchars($inventory['kuantitas']);
                     </div>
                 </div>
                 <hr class="my-4">
-                <button class="w-100 btn btn-primary btn-lg" type="submit">Continue to checkout</button>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-3">
+                            <a href="index.php" class="btn btn-secondary btn-lg w-100">Kembali</a>
+                        </div>
+                        <div class="col-9">
+                            <button class="btn btn-primary btn-lg w-100" type="submit">Continue to checkout</button>
+                        </div>
+                    </div>
+                </div>
                 </form>
             </div>
         </div>

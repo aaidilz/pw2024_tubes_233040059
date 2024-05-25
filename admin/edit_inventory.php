@@ -69,6 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <label for="gambar">Gambar</label>
                     <input type="file" name="gambar" id="gambar" class="form-control">
                 </div>
+                <a href="inventory.php" class="btn btn-secondary">Kembali</a>
                 <button type="submit" class="btn btn-primary">Edit</button>
             </form>
         </div>

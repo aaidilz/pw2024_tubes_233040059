@@ -27,6 +27,7 @@ $orders = $controller->getAllOrders();
                         <th>Address</th>
                         <th>Payment Method</th>
                         <th>Status</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>

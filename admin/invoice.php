@@ -67,7 +67,7 @@ if (isset($_GET['id'])) {
             </div>
         </div>
         <div class="card-footer">
-            <a href="order.php" class="btn btn-primary">Back</a>
+            <a href="order.php" class="btn btn-primary">Kembali</a>
             <a href="print_invoice.php?id=<?php echo $order['id']; ?>" class="btn btn-success">Print</a>
         </div>
     </div>

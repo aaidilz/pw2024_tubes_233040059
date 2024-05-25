@@ -65,6 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
                 <div class="card-body">
                     <p>Pesanan Anda telah diterima. Detail pesanan telah dikirimkan ke email Anda.</p>
+                    <a href="index.php" class="btn btn-secondary">Kembali</a>
                     <a href="cetak_invoice.php?id=<?php echo $user_id ?>" class="btn btn-primary">Cetak Invoice</a>
                 </div>
             </div>

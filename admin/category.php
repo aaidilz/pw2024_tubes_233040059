@@ -66,6 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <label for="nama">nama</label>
                     <input type="text" name="nama" id="nama" class="form-control" required>
                 </div>
+                <a href="inventory.php" class="btn btn-secondary">Kembali</a>
                 <button type="submit" class="btn btn-primary">Tambah</button>
             </form>
         </div>

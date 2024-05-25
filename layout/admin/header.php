@@ -16,9 +16,7 @@
 <body class="bg-dark text-white">
     <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
         <div class="container-fluid">
-            <a class="navbar-brand mx-3" href="#">Hello, <?php
-                echo $_SESSION['username'];
-            ?></a>
+            <a class="navbar-brand mx-3" href="#">Hello, <?php echo $_SESSION['username']; ?></a>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -27,43 +25,49 @@
 
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <?php
+                    // Dapatkan nama file dari URL saat ini
+                    $current_page = basename($_SERVER['PHP_SELF'], ".php");
+                    ?>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">
+                        <a class="nav-link <?php echo ($current_page == 'dashboard') ? 'active' : ''; ?>" aria-current="page" href="dashboard.php">
                             <i class="fa fa-home"></i> Home
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../admin/order.php">
+                        <a class="nav-link <?php echo ($current_page == 'order') ? 'active' : ''; ?>" href="../admin/order.php">
                             <i class="fa fa-cart-shopping"></i> Orders
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../admin/inventory.php">
+                        <a class="nav-link <?php echo ($current_page == 'inventory') ? 'active' : ''; ?>" href="../admin/inventory.php">
                             <i class="fa fa-gamepad"></i> Applications
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../admin/users.php">
+                        <a class="nav-link <?php echo ($current_page == 'users') ? 'active' : ''; ?>" href="../admin/users.php">
                             <i class="fa fa-user"></i> Users
                         </a>
                     </li>
                 </ul>
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        <a class="nav-link dropdown-toggle <?php echo ($current_page == 'profile') ? 'active' : ''; ?>" href="#" id="navbarDropdown" role="button"
                             data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fa fa-user"></i> Profile
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <!-- Isi dropdown menu di sini -->
                             <a class="dropdown-item" href="../admin/profile.php">Setting</a>
+                            <a class="dropdown-item" href="../index.php">Dashboard Index</a>
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../../logout.php"><i class="fa fa-door-open"></i> Logout
+                        <a class="nav-link <?php echo ($current_page == 'logout') ? 'active' : ''; ?>" href="../../logout.php"><i class="fa fa-door-open"></i> Logout
                         </a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
+</body>
+</html>
