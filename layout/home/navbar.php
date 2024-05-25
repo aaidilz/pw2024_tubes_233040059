@@ -30,6 +30,7 @@ session_start();
                             <?php if ($_SESSION['role'] == 'admin'): ?>
                                 <li><a class="dropdown-item" href="/admin/dashboard.php">Dashboard Admin</a></li>
                             <?php endif; ?>
+                            <li><a class="dropdown-item" href="/cart.php">Cart</a></li>
                             <li><a class="dropdown-item" href="/profile.php">Profile</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" href="/logout.php">Logout</a></li>

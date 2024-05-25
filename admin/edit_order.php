@@ -13,17 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $status = htmlspecialchars($_POST['status']);
 
     if ($controller->updateOrder($id, $status)) {
-        if ($status === 'complete') {
-            if ($controller->deleteOrder($id)) {
-                header("Location: order.php");
-                exit();
-            } else {
-                $error_message = "Gagal menghapus order.";
-            }
-        } else {
-            $controller->updateOrder($id, $status);
-            header("Location: order.php");
-            exit();}
+        header('Location: order.php');
     } else {
         $error_message = "Gagal mengedit order.";
     }

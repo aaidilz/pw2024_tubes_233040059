@@ -90,15 +90,24 @@ class OrderController{
     }
 
     public function getOrderDetailsByUserId($user_id) {
-        $sql = "SELECT orders.*, user.username as user_name, inventory.nama as inventory_name, orders.email
-                FROM orders
-                JOIN user ON orders.user_id = user.id
-                JOIN inventory ON orders.inventory_id = inventory.id
-                WHERE orders.user_id = ?";
+        $sql = "SELECT orders.*, user.username as user_name, inventory.nama as inventory_name, inventory.harga, orders.email
+        FROM orders
+        JOIN user ON orders.user_id = user.id
+        JOIN inventory ON orders.inventory_id = inventory.id
+        WHERE orders.user_id = ?";
 
+    
         $stmt = $this->conn->prepare($sql);
         $stmt->bind_param('i', $user_id);
         $stmt->execute();
-        return $stmt->get_result()->fetch_assoc();
-    }
+        $result = $stmt->get_result();
+    
+        $orderDetails = array();
+    
+        while ($row = $result->fetch_assoc()) {
+            $orderDetails[] = $row;
+        }
+    
+        return $orderDetails;
+    }    
 }
