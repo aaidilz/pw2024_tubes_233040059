@@ -41,6 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <label for="nama">Nama</label>
                     <input type="text" name="nama" id="nama" class="form-control" value="<?php echo $get_id['nama']; ?>" required>
                 </div>
+                <a href="category.php" class="btn btn-secondary">Kembali</a>
                 <button type="submit" class="btn btn-primary">Edit</button>
             </form>
         </div>

@@ -14,6 +14,21 @@ $users = $controller->getAllUsers();
             <h1>Manajemen Pengguna</h1>
         </div>
         <div class="card-body">
+            <?php if (isset($_SESSION['success_message'])): ?>
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <?php echo $_SESSION['success_message']; ?>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                <?php unset($_SESSION['success_message']); ?>
+            <?php endif; ?>
+
+            <?php if (isset($_SESSION['error_message'])): ?>
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <?php echo $_SESSION['error_message']; ?>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                <?php unset($_SESSION['error_message']); ?>
+            <?php endif; ?>
             <table class="table table-bordered">
                 <thead>
                     <tr>
@@ -39,7 +54,8 @@ $users = $controller->getAllUsers();
                                 <?php else: ?>
                                     <a href="edit_user.php?id=<?php echo $user['id']; ?>" class="btn btn-warning btn-sm"><i
                                             class="fa fa-wrench"></i> Edit</a>
-                                    <a href="delete_user.php?id=<?php echo $user['id']; ?>" class="btn btn-danger btn-sm"><i
+                                    <a href="delete_user.php?id=<?php echo $user['id']; ?>" class="btn btn-danger btn-sm"
+                                        onclick="return confirm('Apakah anda yakin ingin menghapus kategori ini?')"><i
                                             class="fa fa-trash"></i> Hapus</a>
                                 <?php endif; ?>
                             </td>

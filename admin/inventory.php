@@ -10,8 +10,24 @@ require '../layout/admin/header.php';
         </div>
         <div class="card-body">
             <table class="table table-bordered" id="inventoryTable">
-                <div class="input-group mb-3 w-25">
-                    <input type="text" class="form-control" id="search" placeholder="Cari Nama Inventory">
+                <div class="container d-flex">
+                    <div class="input-group mb-3 w-75">
+                        <input type="text" class="form-control" id="search" placeholder="Cari Nama Inventory">
+                    </div>
+                    <div class="input-group mb-3 w-25">
+                        <select class="form-control" id="orderColumn">
+                            <option value="nama">Nama</option>
+                            <option value="kuantitas">Kuantitas</option>
+                            <option value="harga">Harga</option>
+                            <option value="kategori_nama">Kategori</option>
+                        </select>
+                    </div>
+                    <div class="input-group mb-3 w-25">
+                        <select class="form-control" id="orderDirection">
+                            <option value="ASC">Ascending</option>
+                            <option value="DESC">Descending</option>
+                        </select>
+                    </div>
                 </div>
                 <thead>
                     <tr>
@@ -42,8 +58,8 @@ require '../layout/admin/header.php';
                                 <td>
                                     <a href="edit_inventory.php?id=<?php echo $inventory['id']; ?>"
                                         class="btn btn-warning">Edit</a>
-                                    <a href="delete_inventory.php?id=<?php echo $inventory['id']; ?>"
-                                        class="btn btn-danger">Hapus</a>
+                                    <a href="delete_inventory.php?id=<?php echo $inventory['id']; ?>" class="btn btn-danger"
+                                        onclick="return confirm('Apakah anda yakin ingin menghapus inventory ini?')">Hapus</a>
                                 </td>
                             </tr>
                             <?php $counter++; ?>
@@ -65,14 +81,18 @@ require '../layout/admin/header.php';
 <script>
     $(document).ready(function () {
         // Pencarian pertama kali halaman dimuat
-        searchInventory("");
+        searchInventory("", "nama", "ASC");
 
         // Fungsi untuk melakukan pencarian
-        function searchInventory(query) {
+        function searchInventory(query, column, direction) {
             $.ajax({
                 url: "../../app/controller/GetInventoryController.php",
                 method: "POST",
-                data: { query: query },
+                data: {
+                    query: query,
+                    column: column,
+                    direction: direction
+                },
                 success: function (data) {
                     $("#inventoryTable tbody").html(data);
                 }
@@ -82,10 +102,15 @@ require '../layout/admin/header.php';
         // Event listener untuk memicu pencarian saat pengguna mengetik
         $("#search").on("keyup", function () {
             var query = $(this).val();
-            searchInventory(query);
+            searchInventory(query, $("#orderColumn").val(), $("#orderDirection").val());
+        });
+
+        // Event listener untuk memicu pengurutan saat pengguna memilih kolom dan arah
+        $("#orderColumn, #orderDirection").on("change", function () {
+            var query = $("#search").val();
+            searchInventory(query, $("#orderColumn").val(), $("#orderDirection").val());
         });
     });
-
 </script>
 
 <?php

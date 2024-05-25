@@ -1,7 +1,4 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 'On');
-
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
@@ -48,7 +45,11 @@ class InventoryController
     public function createInventory($nama, $kuantitas, $harga, $gambar, $kategori_id)
     {
         $target_dir = __DIR__ . '/../../uploads/';
-        $target_file = $target_dir . basename($gambar['name']);
+
+        // Buat nama file baru yang unik
+        $fileExtension = pathinfo($gambar['name'], PATHINFO_EXTENSION);
+        $uniqueFileName = uniqid() . '.' . $fileExtension;
+        $target_file = $target_dir . $uniqueFileName;
 
         // cek file
         if ($gambar['error'] !== 0) {
@@ -67,7 +68,7 @@ class InventoryController
         }
 
         // validasi ukuran file
-        $max_size = 1 * 1024 * 1024; // 5MB
+        $max_size = 1 * 1024 * 1024; // 1MB
         if ($gambar['size'] > $max_size) {
             $_SESSION['error_message'] = 'Ukuran file terlalu besar';
             header('Location: create_inventory.php');
@@ -83,7 +84,7 @@ class InventoryController
 
         $sql = "INSERT INTO inventory (nama, kuantitas, harga, gambar, kategori_id) VALUES (?, ?, ?, ?, ?)";
         $stmt = $this->conn->prepare($sql);
-        $stmt->bind_param('siisi', $nama, $kuantitas, $harga, $gambar['name'], $kategori_id);
+        $stmt->bind_param('siisi', $nama, $kuantitas, $harga, $uniqueFileName, $kategori_id);
 
         if ($stmt->execute()) {
             if (move_uploaded_file($gambar['tmp_name'], $target_file)) {
@@ -106,7 +107,6 @@ class InventoryController
     {
         $image_path = [];
         $target_dir = __DIR__ . '/../../uploads/';
-
         $sql = "SELECT gambar FROM inventory WHERE id = ?";
         $stmt = $this->conn->prepare($sql);
         $stmt->bind_param("i", $id);
@@ -138,12 +138,25 @@ class InventoryController
     }
 
     public function updateInventory($id, $nama, $kuantitas, $harga, $gambar, $kategori_id)
-    {
-        $target_dir = __DIR__ . '/../../uploads/';
-        $target_file = $target_dir . basename($gambar['name']);
+{
+    $target_dir = __DIR__ . '/../../uploads/';
+    $old_image_path = [];
 
-        // TODO FIX THIS VALIDATION
-        
+    // Ambil nama file gambar lama dari database
+    $sql = "SELECT gambar FROM inventory WHERE id = ?";
+    $stmt = $this->conn->prepare($sql);
+    $stmt->bind_param("i", $id);
+    $stmt->execute();
+    $stmt->bind_result($old_image_path);
+    $stmt->fetch();
+    $stmt->close();
+
+    // Buat nama file baru yang unik jika ada file yang diunggah
+    if ($gambar['error'] === UPLOAD_ERR_OK) {
+        $fileExtension = pathinfo($gambar['name'], PATHINFO_EXTENSION);
+        $uniqueFileName = uniqid() . '.' . $fileExtension;
+        $target_file = $target_dir . $uniqueFileName;
+
         // cek file
         if ($gambar['error'] !== 0) {
             $_SESSION['error_message'] = 'Gagal mengupload gambar';
@@ -161,8 +174,8 @@ class InventoryController
         }
 
         // validasi ukuran file
-        $max_size = 1 * 1024 * 1024; // 5MB
-        if ($gambar > $max_size) {
+        $max_size = 1 * 1024 * 1024; // 1MB
+        if ($gambar['size'] > $max_size) {
             $_SESSION['error_message'] = 'Ukuran file terlalu besar';
             header('Location: edit_inventory.php?id=' . $id);
             exit();
@@ -175,26 +188,43 @@ class InventoryController
             exit();
         }
 
-        $sql = "UPDATE inventory SET nama = ?, kuantitas = ?, harga = ?, gambar = ?, kategori_id = ? WHERE id = ?";
-        $stmt = $this->conn->prepare($sql);
-        $stmt->bind_param('siisii', $nama, $kuantitas, $harga, $gambar['name'], $kategori_id, $id);
-
-        if ($stmt->execute()) {
-            if (move_uploaded_file($gambar['tmp_name'], $target_file)) {
-                $_SESSION['success_message'] = 'Inventory berhasil diubah';
-                header('Location: inventory.php');
-                exit();
-            } else {
-                $_SESSION['error_message'] = 'Gagal mengupload gambar';
-                header('Location: edit_inventory.php?id=' . $id);
-                exit();
+        // Pindahkan file baru ke direktori tujuan
+        if (move_uploaded_file($gambar['tmp_name'], $target_file)) {
+            // Hapus file gambar lama jika ada
+            if ($old_image_path) {
+                $full_old_path = $target_dir . $old_image_path;
+                if (file_exists($full_old_path)) {
+                    unlink($full_old_path);
+                }
             }
         } else {
-            $_SESSION['error_message'] = 'Gagal mengedit';
+            $_SESSION['error_message'] = 'Gagal mengupload gambar';
             header('Location: edit_inventory.php?id=' . $id);
             exit();
         }
+    } else {
+        // Jika tidak ada file yang diunggah, gunakan nama file gambar lama
+        $uniqueFileName = $old_image_path;
     }
+
+    // Update database dengan nama file baru atau yang lama jika tidak ada unggahan
+    $sql = "UPDATE inventory SET nama = ?, kuantitas = ?, harga = ?, gambar = ?, kategori_id = ? WHERE id = ?";
+    $stmt = $this->conn->prepare($sql);
+    $stmt->bind_param('siisii', $nama, $kuantitas, $harga, $uniqueFileName, $kategori_id, $id);
+
+    if ($stmt->execute()) {
+        $_SESSION['success_message'] = 'Inventory berhasil diubah';
+        header('Location: inventory.php');
+        exit();
+    } else {
+        $_SESSION['error_message'] = 'Gagal mengedit';
+        header('Location: edit_inventory.php?id=' . $id);
+        exit();
+    }
+}
+
+
+
 
     public function getInventoryById($id)
     {
@@ -210,5 +240,4 @@ class InventoryController
             return false;
         }
     }
-
 }

@@ -1,23 +1,25 @@
 <?php
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 ?>
 
 <nav class="navbar navbar-expand-lg bg-body-transparent fixed-top">
     <div class="container-fluid mx-5 mt-1">
-        <a class="navbar-brand text-warning" href="#"><i class="fa-solid fa-layer-group text-warning"></i> STACKED</a>
+        <a class="navbar-brand text-white" href="#"><i class="fa-solid fa-layer-group text-warning"></i>STACKED</a>
         <button class="navbar-toggler text-warning" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mx-auto ">
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="#">TOP GAMES</a>
+                    <a class="nav-link text-white" href="#"></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="#">GAME LIST</a>
+                    <a class="nav-link text-white" href="#"></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="#">FEATURE</a>
+                    <a class="nav-link text-white" href="#"></a>
                 </li>
             </ul>
             <ul class="navbar-nav">
@@ -30,6 +32,7 @@ session_start();
                             <?php if ($_SESSION['role'] == 'admin'): ?>
                                 <li><a class="dropdown-item" href="/admin/dashboard.php">Dashboard Admin</a></li>
                             <?php endif; ?>
+                            <li><a class="dropdown-item" href="/cart.php">Cart</a></li>
                             <li><a class="dropdown-item" href="/profile.php">Profile</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" href="/logout.php">Logout</a></li>

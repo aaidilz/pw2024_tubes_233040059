@@ -49,6 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <option value="admin">Admin</option>
                     </select>
                 </div>
+                <a href="users.php" class="btn btn-secondary">Kembali</a>
                 <button type="submit" class="btn btn-primary">Tambah</button>
             </form>
         </div>
