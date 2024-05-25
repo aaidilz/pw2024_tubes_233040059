@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: May 25, 2024 at 10:48 PM
+-- Generation Time: May 25, 2024 at 10:52 PM
 -- Server version: 8.0.36-0ubuntu0.22.04.1
 -- PHP Version: 8.1.2-1ubuntu2.17
 
@@ -95,14 +95,6 @@ CREATE TABLE `orders` (
   `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `orders`
---
-
-INSERT INTO `orders` (`id`, `user_id`, `inventory_id`, `quantity`, `total_price`, `order_date`, `paymentMethod`, `name`, `email`, `address`, `status`) VALUES
-(53, 1, 39, 1, '550000', '2024-05-25 15:04:29', 'QRIS', 'admint', 'admin@admin', 'admin jepang 123', 'pending'),
-(54, 15, 40, 8, '600000', '2024-05-25 15:29:33', 'QRIS', '123', '123@123', '123', 'pending');
-
 -- --------------------------------------------------------
 
 --
@@ -125,8 +117,7 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id`, `username`, `password`, `email`, `role`, `created_at`, `updated_at`) VALUES
 (1, 'admin', '$2y$10$X0mvG7pC.GCg9v/zvSMci.VaZyqQ8tLkXAZxJTCrXNy2DfU6kxg6C', 'admin@example.com', 'admin', '2024-05-17 08:16:40', '2024-05-23 02:22:53'),
-(8, 'asep', '$2y$10$YmH5F5uf0L.S9vGSWIDgVOH.epbbx/A5bD3.03E1RG82cfVbrF4c.', 'asep@asep', 'user', '2024-05-23 02:22:36', '2024-05-23 02:22:36'),
-(15, 'test_account', '$2y$10$KZsGPOBaueJopYraP500BuotssgWwXrbPajgNEZCY6tYDhurjuTHC', 'test@mail.com', 'user', '2024-05-25 15:28:47', '2024-05-25 15:31:16');
+(8, 'asep', '$2y$10$YmH5F5uf0L.S9vGSWIDgVOH.epbbx/A5bD3.03E1RG82cfVbrF4c.', 'asep@asep', 'user', '2024-05-23 02:22:36', '2024-05-23 02:22:36');
 
 --
 -- Indexes for dumped tables
