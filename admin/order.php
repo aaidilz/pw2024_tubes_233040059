@@ -38,7 +38,7 @@ $orders = $controller->getAllOrders();
                             <td><?php echo $order['user_name']; ?></td>
                             <td><?php echo $order['inventory_name']; ?></td>
                             <td><?php echo $order['quantity']; ?></td>
-                            <td><?php echo $order['total_price']; ?></td>
+                            <td>Rp<?php echo $order['total_price']; ?></td>
                             <td><?php echo $order['email']; ?></td>
                             <td><?php echo $order['address']; ?></td>
                             <td><?php echo $order['paymentMethod']; ?></td>

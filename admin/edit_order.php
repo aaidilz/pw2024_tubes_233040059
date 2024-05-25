@@ -41,7 +41,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <option value="Complete" <?php echo $order['status'] == 'Complate' ? 'selected' : ''; ?>>Complete</option>
                     </select>
                 </div>
-                <button type="submit" class="btn btn-primary">Simpan</button>
+                <div class="card-footer">
+                    <a href="order.php" class="btn btn-secondary">Kembali</a>
+                    <a href="delete_order.php?id=<?php echo $order['id']; ?>" class="btn btn-danger" onclick="return confirm('Yakin ingin menghapus invoice ini?')">Hapus</a>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
+                </div>
             </form>
         </div>
     </div>
