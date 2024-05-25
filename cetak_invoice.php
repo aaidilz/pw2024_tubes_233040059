@@ -2,29 +2,42 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 'On');
 
-require '../config/protected.php';
-require '../vendor/autoload.php';
-require '../app/controller/OrderController.php';
+// Start the session to manage user data
+session_start();
 
+// Include necessary files
+require_once __DIR__ . '/vendor/autoload.php';
+require_once __DIR__ . '/app/controller/OrderController.php';
+
+// Create an instance of OrderController
 $controller = new OrderController($conn);
 
-if (isset($_GET['id'])) {
-    $order = $controller->getOrderById($_GET['id']);
-    $user = $controller->getUserById($order['user_id']);
-    $inventory = $controller->getInventoryById($order['inventory_id']);
+// Check if user_id is provided
+if (!isset($_GET['id'])) {
+    die('User ID tidak ditemukan');
+}
+
+$user_id = $_GET['id'];
+
+// Fetch order details for the user
+$order_details = $controller->getOrderDetailsByUserId($user_id);
+$inventory = $controller->getInventoryById($order_details['inventory_id']);
+// Check if order details are found
+if (!$order_details) {
+    die('Order tidak ditemukan');
 }
 
 $invoiceData = [
-    'order_date' => $order['order_date'],
-    'order_id' => $order['id'],
-    'user_name' => $user['username'],
-    'inventory_name' => $inventory['nama'],
-    'quantity' => $order['quantity'],
-    'total_price' => $order['total_price'],
-    'email' => $order['email'],
-    'address' => $order['address'],
-    'paymentMethod' => $order['paymentMethod'],
-    'status' => $order['status']
+    'order_date' => $order_details['order_date'],
+    'order_id' => $order_details['id'],
+    'user_name' => $order_details['user_name'],
+    'inventory_name' => $order_details['inventory_name'],
+    'quantity' => $order_details['quantity'],
+    'total_price' => $order_details['total_price'],
+    'email' => $order_details['email'],
+    'address' => $order_details['address'],
+    'paymentMethod' => $order_details['paymentMethod'],
+    'status' => $order_details['status']
 ];
 
 $pdf = new TCPDF();
@@ -41,7 +54,7 @@ $pdf->SetAutoPageBreak(true, 20);
 
 // Add a page
 $pdf->AddPage();
-$pdf->Image('../public/img/logo.png', 10, 0, 50);
+$pdf->Image('public/img/logo.png', 10, 0, 50);
 
 // Set font
 $pdf->SetFont('helvetica', '', 12);

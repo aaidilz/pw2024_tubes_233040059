@@ -48,7 +48,7 @@ if (isset($_GET['id'])) {
                         </tr>
                         <tr>
                             <th scope="row">Email</th>
-                            <td><?php echo $user['email']; ?></td>
+                            <td><?php echo $order['email']; ?></td>
                         </tr>
                         <tr>
                             <th scope="row">Address</th>

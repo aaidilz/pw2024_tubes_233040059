@@ -94,7 +94,6 @@ $kuantitas = htmlspecialchars($inventory['kuantitas']);
                         <label class="form-check-label" for="dana">DANA</label>
                     </div>
                 </div>
-
                 <hr class="my-4">
                 <button class="w-100 btn btn-primary btn-lg" type="submit">Continue to checkout</button>
                 </form>

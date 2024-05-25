@@ -8,18 +8,15 @@ if (session_status() === PHP_SESSION_NONE) {
 
 require_once __DIR__ . '/../../config/database/connection.php';
 
-class OrderController
-{
+class OrderController{
     private $conn;
 
-    public function __construct($conn)
-    {
+    public function __construct($conn){
         $this->conn = $conn;
     }
-
+    
     // get inventory by id
-    public function getInventoryById($id)
-    {
+    public function getInventoryById($id){
         $sql = "SELECT * FROM inventory WHERE id = ?";
         $stmt = $this->conn->prepare($sql);
         $stmt->bind_param('i', $id);
@@ -28,8 +25,7 @@ class OrderController
     }
 
     // get user by id session
-    public function getUserById($id)
-    {
+    public function getUserById($id){
         $sql = "SELECT * FROM user WHERE id = ?";
         $stmt = $this->conn->prepare($sql);
         $stmt->bind_param('i', $id);
@@ -38,18 +34,23 @@ class OrderController
     }
 
     // add to order
-    public function addToCart($user_id, $inventory_id, $quantity, $total_price, $name, $email, $address, $paymentMethod, $status = 'pending')
-    {
+    public function addToCart($user_id, $inventory_id, $quantity, $total_price, $name, $email, $address, $paymentMethod, $status = 'pending') {
         $sql = "INSERT INTO orders (user_id, inventory_id, quantity, total_price, name, email, address, paymentMethod, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $this->conn->prepare($sql);
         $stmt->bind_param('iiidsssss', $user_id, $inventory_id, $quantity, $total_price, $name, $email, $address, $paymentMethod, $status);
         return $stmt->execute();
+
+    }    
+    public function reduceInventoryQuantity($product_id, $quantity) {
+        $sql = "UPDATE inventory SET kuantitas = kuantitas - ? WHERE id = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("ii", $quantity, $product_id);
+        $stmt->execute();
+        $stmt->close();
     }
-
-
+    
     // get all orders
-    public function getAllOrders()
-    {
+    public function getAllOrders(){
         $sql = "SELECT orders.*, user.username as user_name, inventory.nama as inventory_name, orders.email
                 FROM orders
                 JOIN user ON orders.user_id = user.id
@@ -58,12 +59,10 @@ class OrderController
         $stmt->execute();
         return $stmt->get_result();
     }
-
-
+    
     // get order by id
-    public function getOrderById($id)
-    {
-        $sql = "SELECT orders.*, user.username as user_name, inventory.nama as inventory_name, user.email
+    public function getOrderById($id){
+        $sql = "SELECT orders.*, user.username as user_name, inventory.nama as inventory_name, orders.email
                 FROM orders
                 JOIN user ON orders.user_id = user.id
                 JOIN inventory ON orders.inventory_id = inventory.id
@@ -75,8 +74,7 @@ class OrderController
     }
 
     // update order
-    public function updateOrder($id, $status)
-    {
+    public function updateOrder($id, $status){
         $sql = "UPDATE orders SET status = ? WHERE id = ?";
         $stmt = $this->conn->prepare($sql);
         $stmt->bind_param('si', $status, $id);
@@ -84,11 +82,23 @@ class OrderController
     }
 
     // delete order
-    public function deleteOrder($id)
-    {
+    public function deleteOrder($id){
         $sql = "DELETE FROM orders WHERE id = ?";
         $stmt = $this->conn->prepare($sql);
         $stmt->bind_param('i', $id);
         return $stmt->execute();
+    }
+
+    public function getOrderDetailsByUserId($user_id) {
+        $sql = "SELECT orders.*, user.username as user_name, inventory.nama as inventory_name, orders.email
+                FROM orders
+                JOIN user ON orders.user_id = user.id
+                JOIN inventory ON orders.inventory_id = inventory.id
+                WHERE orders.user_id = ?";
+
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param('i', $user_id);
+        $stmt->execute();
+        return $stmt->get_result()->fetch_assoc();
     }
 }

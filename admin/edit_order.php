@@ -13,10 +13,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $status = htmlspecialchars($_POST['status']);
 
     if ($controller->updateOrder($id, $status)) {
-        header("Location: order.php");
-        exit();
+        if ($status === 'complete') {
+            if ($controller->deleteOrder($id)) {
+                header("Location: order.php");
+                exit();
+            } else {
+                $error_message = "Gagal menghapus order.";
+            }
+        } else {
+            $controller->updateOrder($id, $status);
+            header("Location: order.php");
+            exit();}
     } else {
-        $error = "Gagal mengedit order.";
+        $error_message = "Gagal mengedit order.";
     }
 }
 
@@ -28,17 +37,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <h1>Edit Order</h1>
         </div>
         <div class="card-body">
-            <?php if (isset($error)): ?>
-                <div class="alert alert-danger"><?php echo $error; ?></div>
+            <?php if (isset($error_message)): ?>
+                <div class="alert alert-danger"><?php echo $error_message; ?></div>
             <?php endif; ?>
             <form action="edit_order.php" method="POST">
                 <input type="hidden" name="id" value="<?php echo $order['id']; ?>">
                 <div class="form-group">
                     <label for="status">Status</label>
                     <select name="status" id="status" class="form-control" required>
-                        <option value="Pending" <?php echo $order['status'] == 'pending' ? 'selected' : ''; ?>>Pending</option>
-                        <option value="Sending" <?php echo $order['status'] == 'Sending' ? 'selected' : ''; ?>>Sending</option>
-                        <option value="Complete" <?php echo $order['status'] == 'Complate' ? 'selected' : ''; ?>>Complete</option>
+                        <option value="pending" <?php echo $order['status'] == 'pending' ? 'selected' : ''; ?>>Pending</option>
+                        <option value="sending" <?php echo $order['status'] == 'sending' ? 'selected' : ''; ?>>Sending</option>
+                        <option value="complete" <?php echo $order['status'] == 'complate' ? 'selected' : ''; ?>>Complete</option>
                     </select>
                 </div>
                 <div class="card-footer">
