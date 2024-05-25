@@ -63,4 +63,11 @@ class UserController
         $stmt->bind_param('i', $id);
         return $stmt->execute();
     }
+
+    public function getUserCount()
+    {
+        $sql = "SELECT COUNT(*) as total_users FROM user";
+        $result = $this->conn->query($sql);
+        return $result->fetch_assoc();
+    }
 }

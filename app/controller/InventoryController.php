@@ -243,5 +243,4 @@ class InventoryController
             return false;
         }
     }
-
 }

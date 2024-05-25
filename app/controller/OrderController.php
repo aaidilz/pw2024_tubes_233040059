@@ -109,5 +109,38 @@ class OrderController{
         }
     
         return $orderDetails;
-    }    
+    }
+
+    public function getOrderCount() {
+        $sql = "SELECT COUNT(*) as total_orders FROM orders";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        return $stmt->get_result()->fetch_assoc();
+    }
+    public function getTotalSales() {
+        $sql = "SELECT SUM(total_price) as total_sales FROM orders";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        return $stmt->get_result()->fetch_assoc();
+    }
+    public function getTotalStatus() {
+        $sql = "SELECT status, COUNT(*) as total_status FROM orders GROUP BY status";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->get_result();
+    
+        $totalStatus = array();
+    
+        while ($row = $result->fetch_assoc()) {
+            $totalStatus[] = $row;
+        }
+    
+        return $totalStatus;
+    }
+    public function getTotalInventory() {
+        $sql = "SELECT COUNT(*) as total_inventory FROM inventory";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        return $stmt->get_result()->fetch_assoc();
+    }
 }
