@@ -20,14 +20,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="card-body">
             <!-- get session error message -->
             <?php if (isset($_SESSION['error_message'])): ?>
-                <div class="alert alert-danger"><?php echo $_SESSION['error_message']; ?></div>
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <?php echo $_SESSION['error_message']; ?>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
                 <?php unset($_SESSION['error_message']); ?>
             <?php endif; ?>
+
             <!-- get session success message -->
             <?php if (isset($_SESSION['success_message'])): ?>
-                <div class="alert alert-success"><?php echo $_SESSION['success_message']; ?></div>
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <?php echo $_SESSION['success_message']; ?>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
                 <?php unset($_SESSION['success_message']); ?>
             <?php endif; ?>
+
             <table class="table table-bordered">
                 <thead>
                     <tr>

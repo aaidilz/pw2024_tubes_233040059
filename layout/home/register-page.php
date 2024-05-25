@@ -31,7 +31,9 @@
                         <button type="submit" class="btn btn-primary btn-block w-100 mb-2">Register</button>
                     </form>
                     <?php
-                    session_start();
+                    if (session_status() === PHP_SESSION_NONE) {
+                        session_start();
+                    }
                     if (isset($_SESSION['error_message'])) {
                         echo "<p class='text-center'>" . $_SESSION['error_message'] . "</p>";
                         unset($_SESSION['error_message']);

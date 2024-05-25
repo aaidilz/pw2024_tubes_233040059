@@ -1,5 +1,7 @@
 <?php
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+  session_start();
+}
 
 if (isset($_SESSION['success_message'])) {
     echo '<script>alert("' . $_SESSION['success_message'] . '");</script>';
@@ -38,7 +40,6 @@ if (isset($_SESSION['success_message'])) {
               </div>
 
               <?php
-              session_start();
               if (isset($_SESSION['error_message'])) {
                 echo "<div class='text-center mb-3'>" . $_SESSION['error_message'] . "</div>";
                 unset($_SESSION['error_message']);

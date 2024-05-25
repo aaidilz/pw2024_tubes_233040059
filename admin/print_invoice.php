@@ -1,7 +1,4 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 'On');
-
 require '../config/protected.php';
 require '../vendor/autoload.php';
 require '../app/controller/OrderController.php';

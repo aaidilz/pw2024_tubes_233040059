@@ -30,6 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <!DOCTYPE html>
 <html lang="en">
 <?php include 'layout/home/header.php'; ?>
+<?php include 'layout/home/navbar.php'; ?>
 
 <body class="d-flex justify-content-center align-items-center vh-100 overflow-auto">
     <div class="container">
