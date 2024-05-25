@@ -45,7 +45,14 @@ class UserController
         $sql = "INSERT INTO user (username, password, email, role) VALUES (?, ?, ?, ?)";
         $stmt = $this->conn->prepare($sql);
         $stmt->bind_param('ssss', $username, $hashedPassword, $email, $role);
-        return $stmt->execute();
+        
+        if ($stmt->execute()) {
+            $_SESSION['success_message'] = 'User berhasil ditambahkan';
+            header('Location: users.php');
+        } else {
+            $_SESSION['error_message'] = 'User gagal ditambahkan';
+            header('Location: users.php');
+        }
     }
 
     public function updateUser($id, $username, $role)
@@ -53,15 +60,46 @@ class UserController
         $sql = "UPDATE user SET username = ?, role = ? WHERE id = ?";
         $stmt = $this->conn->prepare($sql);
         $stmt->bind_param('ssi', $username, $role, $id);
-        return $stmt->execute();
+        
+        if ($stmt->execute()) {
+            $_SESSION['success_message'] = 'User berhasil diupdate';
+            header('Location: users.php');
+        } else {
+            $_SESSION['error_message'] = 'User gagal diupdate';
+            header('Location: users.php');
+        }
     }
 
+    // periksa apakah user sedang digunakan oleh orders
     public function deleteUser($id)
     {
-        $sql = "DELETE FROM user WHERE id = ?";
+        $totalOrders = 0;
+        $sql = "SELECT COUNT(*) as total_orders FROM orders WHERE user_id = ?";
         $stmt = $this->conn->prepare($sql);
         $stmt->bind_param('i', $id);
-        return $stmt->execute();
+        $stmt->execute();
+        $stmt->bind_result($totalOrders);
+        $stmt->fetch();
+        $stmt->close();
+
+        if ($totalOrders > 0) {
+            $_SESSION['error_message'] = 'User sedang digunakan oleh table orders';
+            header('Location: users.php');
+            exit;
+        } else {
+            $sql = "DELETE FROM user WHERE id = ?";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->bind_param('i', $id);
+            
+            if ($stmt->execute()) {
+                $_SESSION['success_message'] = 'User berhasil dihapus';
+                header('Location: users.php');
+            } else {
+                $_SESSION['error_message'] = 'User gagal dihapus';
+                header('Location: users.php');
+            }
+        }
+        
     }
 
     public function getUserCount()
