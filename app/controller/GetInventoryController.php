@@ -34,7 +34,7 @@ if ($result->num_rows > 0) {
                 <td><img src='../uploads/{$inventory['gambar']}' alt='' style='width: 100px;'></td>
                 <td>{$inventory['nama']}</td>
                 <td>{$inventory['kuantitas']}</td>
-                <td>{$inventory['harga']}</td>
+                <td>Rp{$inventory['harga']}</td>
                 <td>{$inventory['kategori_nama']}</td>
                 <td>
                     <a href='edit_inventory.php?id={$inventory['id']}' class='btn btn-warning'>Edit</a>

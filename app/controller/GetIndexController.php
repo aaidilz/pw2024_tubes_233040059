@@ -51,7 +51,7 @@ if ($result->num_rows > 0) {
                   <a href='orders.php?id={$inventory['id']}' class='text-dark'>{$inventory['nama']}</a>
                 </h5>
                 <p class='small text-muted font-italic'>Stock: {$inventory['kuantitas']}</p>
-                <h4>Rp {$inventory['harga']}</h4>
+                <h4>Rp{$inventory['harga']}</h4>
               </div>
             </div>
           </div>

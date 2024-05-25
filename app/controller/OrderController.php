@@ -34,11 +34,42 @@ class OrderController{
     }
 
     // add to order
-    public function addToCart($user_id, $inventory_id, $quantity, $total_price, $name, $email, $address, $paymentMethod) {
-        $sql = "INSERT INTO orders (user_id, inventory_id, quantity, total_price, name, email, address, paymentMethod) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    public function addToCart($user_id, $inventory_id, $quantity, $total_price, $name, $email, $address, $paymentMethod, $status = 'pending') {
+        $sql = "INSERT INTO orders (user_id, inventory_id, quantity, total_price, name, email, address, paymentMethod, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $this->conn->prepare($sql);
-        $stmt->bind_param('iiidsdss', $user_id, $inventory_id, $quantity, $total_price, $name, $email, $address, $paymentMethod);
+        $stmt->bind_param('iiidsdsss', $user_id, $inventory_id, $quantity, $total_price, $name, $email, $address, $paymentMethod, $status);
         return $stmt->execute();
     }
     
+    // get all orders
+    public function getAllOrders(){
+        $sql = "SELECT orders.*, user.username as user_name, inventory.nama as inventory_name, user.email
+                FROM orders
+                JOIN user ON orders.user_id = user.id
+                JOIN inventory ON orders.inventory_id = inventory.id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        return $stmt->get_result();
+    }
+    
+    // get order by id
+    public function getOrderById($id){
+        $sql = "SELECT orders.*, user.username as user_name, inventory.nama as inventory_name, user.email
+                FROM orders
+                JOIN user ON orders.user_id = user.id
+                JOIN inventory ON orders.inventory_id = inventory.id
+                WHERE orders.id = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param('i', $id);
+        $stmt->execute();
+        return $stmt->get_result()->fetch_assoc();
+    }
+
+    // update order
+    public function updateOrder($id, $status){
+        $sql = "UPDATE orders SET status = ? WHERE id = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param('si', $status, $id);
+        return $stmt->execute();
+    }
 }

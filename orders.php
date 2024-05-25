@@ -7,6 +7,11 @@ if (!isset($_SESSION['username'])) {
     exit();
 }
 
+if (!isset($_GET['id'])) {
+    header('Location: index.php');
+    exit();
+}
+
 ?>
 
 

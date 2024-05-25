@@ -165,7 +165,7 @@ $categories = $controller->getAllCategory();
                   class="text-dark"><?php echo $inventory['nama']; ?></a>
               </h5>
               <p class="small text-muted font-italic">Stock: <?php echo $inventory['kuantitas']; ?></p>
-              <h4>Rp <?php echo $inventory['harga']; ?></h4>
+              <h4>Rp<?php echo $inventory['harga']; ?></h4>
             </div>
           </div>
         </div>

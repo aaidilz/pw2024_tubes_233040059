@@ -33,7 +33,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="../admin/order.php">
                             <i class="fa fa-cart-shopping"></i> Orders
                         </a>
                     </li>
