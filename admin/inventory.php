@@ -113,6 +113,7 @@ require '../layout/admin/header.php';
     });
 </script>
 
+<!-- end_isi -->
 <?php
 require '../layout/admin/footer.php';
 ?>

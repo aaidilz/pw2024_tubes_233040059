@@ -72,3 +72,8 @@ if (isset($_GET['id'])) {
         </div>
     </div>
 </div>
+
+<!-- end_isi -->
+<?php
+require '../layout/admin/footer.php';
+?>

@@ -76,6 +76,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </div>
 </div>
 
+<!-- end_isi -->
 <?php
 require '../layout/admin/footer.php';
 ?>
