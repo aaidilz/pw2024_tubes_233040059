@@ -34,5 +34,11 @@ if (!isset($_GET['id'])) {
     </section>
 
    <?php include 'layout/home/order-page.php'; ?>
+   <section>
+        <br>
+        <br>
+        <br>
+    </section>
+   <?php include 'layout/home/footer.php'; ?>
 
 </body>

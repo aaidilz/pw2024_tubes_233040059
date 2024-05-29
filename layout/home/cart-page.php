@@ -1,4 +1,9 @@
 <?php
+if (!isset($_SESSION['username'])) {
+    header('Location: login.php');
+    exit();
+}
+
 require __DIR__ . '/../../app/controller/CartController.php';
 
 $controller = new CartController($conn);

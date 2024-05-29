@@ -1,10 +1,4 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 'On');
-
-// Start the session to manage user data
-session_start();
-
 // Include necessary files
 require_once __DIR__ . '/vendor/autoload.php';
 require_once __DIR__ . '/app/controller/OrderController.php';

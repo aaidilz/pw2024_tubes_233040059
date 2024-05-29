@@ -93,3 +93,8 @@ $total_inventory = $controller_order->getTotalInventory();
         </div>
     </div>
 </div>
+
+<!-- end_isi -->
+<?php
+require '../layout/admin/footer.php';
+?>

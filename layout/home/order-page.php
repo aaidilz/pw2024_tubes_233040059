@@ -1,6 +1,11 @@
 <?php
 require_once __DIR__ . '/../../app/controller/OrderController.php';
 
+if (!isset($_SESSION['username'])) {
+    header('Location: login.php');
+    exit();
+}
+
 $controller = new OrderController($conn);
 $user = $controller->getUserById($_SESSION['user_id']);
 $inventory = $controller->getInventoryById($_GET['id']);
@@ -13,7 +18,7 @@ $kuantitas = htmlspecialchars($inventory['kuantitas']);
 ?>
 
 <section>
-    <div class="container bg-dark text-white">
+    <div class="container bg-dark text-white rounded-4">
         <div class="row g-5">
             <div class="col-md-12 col-lg-12">
                 <!-- checkout card -->
@@ -95,7 +100,7 @@ $kuantitas = htmlspecialchars($inventory['kuantitas']);
                     </div>
                 </div>
                 <hr class="my-4">
-                <div class="container">
+                <div class="container mb-4">
                     <div class="row">
                         <div class="col-3">
                             <a href="index.php" class="btn btn-secondary btn-lg w-100">Kembali</a>
