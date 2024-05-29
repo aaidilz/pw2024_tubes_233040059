@@ -41,31 +41,15 @@ require '../layout/admin/header.php';
                     </tr>
                 </thead>
                 <tbody>
-                    <?php if (empty($inventories)): ?>
-                        <tr>
-                            <td colspan="7" class="text-center">Tidak ada data</td>
-                        </tr>
-                    <?php else: ?>
-                        <?php $counter = 1; ?>
-                        <?php foreach ($inventories as $inventory): ?>
-                            <tr>
-                                <td><?php echo $counter; ?></td>
-                                <td><img src="../uploads/<?php echo $inventory['gambar']; ?>" alt="" style="width: 100px;"></td>
-                                <td><?php echo $inventory['nama']; ?></td>
-                                <td><?php echo $inventory['kuantitas']; ?></td>
-                                <td><?php echo $inventory['harga']; ?></td>
-                                <td><?php echo $inventory['kategori_nama']; ?></td>
-                                <td>
-                                    <a href="edit_inventory.php?id=<?php echo $inventory['id']; ?>"
-                                        class="btn btn-warning">Edit</a>
-                                    <a href="delete_inventory.php?id=<?php echo $inventory['id']; ?>" class="btn btn-danger"
-                                        onclick="return confirm('Apakah anda yakin ingin menghapus inventory ini?')">Hapus</a>
-                                </td>
-                            </tr>
-                            <?php $counter++; ?>
-                        <?php endforeach; ?>
-                    <?php endif; ?>
+                    <!-- Data akan dimuat melalui AJAX -->
+                </tbody>
             </table>
+             <!-- Pagination -->
+        <nav>
+            <ul class="pagination justify-content-center" id="pagination">
+                <!-- Pagination links akan dimuat melalui AJAX -->
+            </ul>
+        </nav>
         </div>
         <div class="card-footer">
             <a href="create_inventory.php" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah Kategori</a>
@@ -78,23 +62,26 @@ require '../layout/admin/header.php';
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
     integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script>
+    <script>
     $(document).ready(function () {
         // Pencarian pertama kali halaman dimuat
-        searchInventory("", "nama", "ASC");
+        loadInventory(1, "", "nama", "ASC");
 
-        // Fungsi untuk melakukan pencarian
-        function searchInventory(query, column, direction) {
+        // Fungsi untuk melakukan pencarian dan memuat data dengan pagination
+        function loadInventory(page, query, column, direction) {
             $.ajax({
                 url: "../../app/controller/GetInventoryController.php",
                 method: "POST",
                 data: {
+                    page: page,
                     query: query,
                     column: column,
                     direction: direction
                 },
                 success: function (data) {
-                    $("#inventoryTable tbody").html(data);
+                    var parsedData = JSON.parse(data);
+                    $("#inventoryTable tbody").html(parsedData.table_data);
+                    $("#pagination").html(parsedData.pagination);
                 }
             });
         }
@@ -102,16 +89,25 @@ require '../layout/admin/header.php';
         // Event listener untuk memicu pencarian saat pengguna mengetik
         $("#search").on("keyup", function () {
             var query = $(this).val();
-            searchInventory(query, $("#orderColumn").val(), $("#orderDirection").val());
+            loadInventory(1, query, $("#orderColumn").val(), $("#orderDirection").val());
         });
 
         // Event listener untuk memicu pengurutan saat pengguna memilih kolom dan arah
         $("#orderColumn, #orderDirection").on("change", function () {
             var query = $("#search").val();
-            searchInventory(query, $("#orderColumn").val(), $("#orderDirection").val());
+            loadInventory(1, query, $("#orderColumn").val(), $("#orderDirection").val());
+        });
+
+        // Event listener untuk pagination
+        $(document).on('click', '.page-link', function (e) {
+            e.preventDefault();
+            var page = $(this).data('page_number');
+            var query = $("#search").val();
+            loadInventory(page, query, $("#orderColumn").val(), $("#orderDirection").val());
         });
     });
 </script>
+
 
 <!-- end_isi -->
 <?php
