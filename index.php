@@ -16,7 +16,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
     <!-- page-content -->
     <?php include 'layout/home/main-page.php'; ?>
-
+    <?php include 'layout/home/footer.php'; ?>
     <script>
         var swiper = new Swiper(".mySwiper", {
             slidesPerView: 1,
