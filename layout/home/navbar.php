@@ -1,9 +1,3 @@
-<?php
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
-?>
-
 <nav class="navbar navbar-expand-lg bg-body-transparent fixed-top">
     <div class="container-fluid mx-5 mt-1">
         <a class="navbar-brand text-white" href="#"><i class="fa-solid fa-layer-group text-warning"></i>STACKED</a>

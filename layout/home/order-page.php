@@ -1,6 +1,11 @@
 <?php
 require_once __DIR__ . '/../../app/controller/OrderController.php';
 
+if (!isset($_SESSION['username'])) {
+    header('Location: login.php');
+    exit();
+}
+
 $controller = new OrderController($conn);
 $user = $controller->getUserById($_SESSION['user_id']);
 $inventory = $controller->getInventoryById($_GET['id']);
