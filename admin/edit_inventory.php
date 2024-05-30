@@ -70,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <input type="file" name="gambar" id="gambar" class="form-control">
                 </div>
                 <a href="inventory.php" class="btn btn-secondary">Kembali</a>
-                <button type="submit" class="btn btn-primary">Edit</button>
+                <button type="submit" class="btn btn-primary">Simpan</button>
             </form>
         </div>
     </div>

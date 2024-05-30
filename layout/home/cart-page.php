@@ -53,7 +53,7 @@ $carts = $controller->getOrdersByUserId($_SESSION['user_id']);
                                     <td><?php echo $cart['paymentMethod']; ?></td>
                                     <td><?php echo $cart['status']; ?></td>
                                     <td>
-                                        <a href="cetak_invoice.php?id=<?php echo $cart['user_id']; ?>" class="btn btn-primary">Invoice</a>
+                                        <a href="cetak_invoice.php?id=<?php echo $cart['user_id']; ?>" class="btn btn-primary"><i class="fa fa-file-invoice"></i> Invoice</a>
                                     </td>
                                 </tr>
                             <?php } ?>

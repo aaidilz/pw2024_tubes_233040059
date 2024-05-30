@@ -46,8 +46,8 @@ if ($result->num_rows > 0) {
                         <td>Rp{$inventory['harga']}</td>
                         <td>{$inventory['kategori_nama']}</td>
                         <td>
-                            <a href='edit_inventory.php?id={$inventory['id']}' class='btn btn-warning'>Edit</a>
-                            <a href='delete_inventory.php?id={$inventory['id']}' class='btn btn-danger'>Hapus</a>
+                            <a href='edit_inventory.php?id={$inventory['id']}' class='btn btn-warning'><i class='fa fa-wrench'></i> Edit</a>
+                            <a href='delete_inventory.php?id={$inventory['id']}' class='btn btn-danger'><i class='fa fa-trash'></i> Hapus</a>
                         </td>
                     </tr>";
         $counter++;

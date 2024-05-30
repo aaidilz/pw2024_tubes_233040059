@@ -52,7 +52,7 @@ require '../layout/admin/header.php';
         </nav>
         </div>
         <div class="card-footer">
-            <a href="create_inventory.php" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah Kategori</a>
+            <a href="create_inventory.php" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah Inventory</a>
             <a href="category.php" class="btn btn-secondary"><i class="fa fa-database"></i> Manage Kategori</a>
         </div>
     </div>

@@ -47,8 +47,8 @@ $orders = $controller->getAllOrders();
 
                             <!-- button edit and invoice -->
                             <td>
-                                <a href="edit_order.php?id=<?php echo $order['id']; ?>" class="btn btn-warning">Edit</a>
-                                <a href="invoice.php?id=<?php echo $order['id']; ?>" class="btn btn-primary">Invoice</a>
+                                <a href="edit_order.php?id=<?php echo $order['id']; ?>" class="btn btn-warning"><i class="fa fa-wrench"></i> Edit</a>
+                                <a href="invoice.php?id=<?php echo $order['id']; ?>" class="btn btn-primary"><i class="fa fa-file-invoice"></i> Invoice</a>
                         </tr>
                         <?php
                     }

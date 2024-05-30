@@ -41,7 +41,7 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link <?php echo ($current_page == 'inventory') ? 'active' : ''; ?>" href="../admin/inventory.php">
-                            <i class="fa fa-gamepad"></i> Applications
+                            <i class="fa fa-boxes-stacked"></i> inventory
                         </a>
                     </li>
                     <li class="nav-item">
@@ -57,8 +57,8 @@
                             <i class="fa fa-user"></i> Profile
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="../admin/profile.php">Setting</a>
-                            <a class="dropdown-item" href="../index.php">Dashboard Index</a>
+                            <a class="dropdown-item" href="../admin/profile.php"><i class="fa fa-cog"></i> Setting</a>
+                            <a class="dropdown-item" href="../index.php"><i class="fa fa-house"></i> Dashboard Index</a>
                         </div>
                     </li>
                     <li class="nav-item">

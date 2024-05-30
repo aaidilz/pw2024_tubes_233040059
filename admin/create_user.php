@@ -49,8 +49,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <option value="admin">Admin</option>
                     </select>
                 </div>
-                <a href="users.php" class="btn btn-secondary">Kembali</a>
-                <button type="submit" class="btn btn-primary">Tambah</button>
+                <a href="users.php" class="btn btn-secondary"><i class="fa fa-arrow-left"></i> Kembali</a>
+                <button type="submit" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah</button>
             </form>
         </div>
     </div>
