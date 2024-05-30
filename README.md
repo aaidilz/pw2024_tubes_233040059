@@ -1,6 +1,6 @@
 # STACKED - Toko Merchandise Anime
 
-![Logo STACKED](public/img/logo.png)
+![Logo STACKED](public/img/logo_readme.png)
 
 ## Daftar Isi
 
