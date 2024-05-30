@@ -3,7 +3,7 @@
     <!-- Footer -->
     <footer class="text-center text-lg-start text-white" style="background-color: #1c2331">
         <!-- Section: Social media -->
-        <section class="d-flex justify-content-between p-4" style="background-color: #6351ce">
+        <section class="d-flex justify-content-between p-4" style="background-color: #011D30">
             <!-- Left -->
             <div class="me-5">
                 <span>Get connected with us on social networks:</span>
@@ -12,22 +12,10 @@
 
             <!-- Right -->
             <div>
-                <a href="" class="text-white me-4">
-                    <i class="fab fa-facebook-f"></i>
-                </a>
-                <a href="" class="text-white me-4">
-                    <i class="fab fa-twitter"></i>
-                </a>
-                <a href="" class="text-white me-4">
-                    <i class="fab fa-google"></i>
-                </a>
-                <a href="" class="text-white me-4">
+                <a href="https://www.instagram.com/aaidilz" class="text-white me-4 text-decoration-none">
                     <i class="fab fa-instagram"></i>
                 </a>
-                <a href="" class="text-white me-4">
-                    <i class="fab fa-linkedin"></i>
-                </a>
-                <a href="" class="text-white me-4">
+                <a href="https://github.com/aaidilz/pw2024_tubes_233040059" class="text-white me-4 text-decoration-none">
                     <i class="fab fa-github"></i>
                 </a>
             </div>
@@ -43,38 +31,15 @@
                     <!-- Grid column -->
                     <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
                         <!-- Content -->
-                        <h6 class="text-uppercase fw-bold">Company name</h6>
+                        <h6 class="text-uppercase fw-bold"><i
+                                class="fa-solid fa-layer-group text-warning"></i></i>STACKED</h6>
                         <hr class="mb-4 mt-0 d-inline-block mx-auto"
                             style="width: 60px; background-color: #7c4dff; height: 2px" />
                         <p>
-                            Here you can use rows and columns to organize your footer
-                            content. Lorem ipsum dolor sit amet, consectetur adipisicing
-                            elit.
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos sequi quod ducimus
+                            dolores veniam earum.
                         </p>
                     </div>
-                    <!-- Grid column -->
-
-                    <!-- Grid column -->
-                    <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
-                        <!-- Links -->
-                        <h6 class="text-uppercase fw-bold">Products</h6>
-                        <hr class="mb-4 mt-0 d-inline-block mx-auto"
-                            style="width: 60px; background-color: #7c4dff; height: 2px" />
-                        <p>
-                            <a href="#!" class="text-white">MDBootstrap</a>
-                        </p>
-                        <p>
-                            <a href="#!" class="text-white">MDWordPress</a>
-                        </p>
-                        <p>
-                            <a href="#!" class="text-white">BrandFlow</a>
-                        </p>
-                        <p>
-                            <a href="#!" class="text-white">Bootstrap Angular</a>
-                        </p>
-                    </div>
-                    <!-- Grid column -->
-
                     <!-- Grid column -->
                     <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
                         <!-- Links -->
@@ -102,10 +67,9 @@
                         <h6 class="text-uppercase fw-bold">Contact</h6>
                         <hr class="mb-4 mt-0 d-inline-block mx-auto"
                             style="width: 60px; background-color: #7c4dff; height: 2px" />
-                        <p><i class="fas fa-home mr-3"></i> New York, NY 10012, US</p>
-                        <p><i class="fas fa-envelope mr-3"></i> info@example.com</p>
-                        <p><i class="fas fa-phone mr-3"></i> + 01 234 567 88</p>
-                        <p><i class="fas fa-print mr-3"></i> + 01 234 567 89</p>
+                        <p><i class="fas fa-home mr-3"></i> Indonesia, Jawa barat, Bandung</p>
+                        <p><i class="fas fa-envelope mr-3"></i> pedilz@example.com</p>
+                        <p><i class="fas fa-phone mr-3"></i> + 62 234 567 88</p>
                     </div>
                     <!-- Grid column -->
                 </div>
@@ -116,8 +80,8 @@
 
         <!-- Copyright -->
         <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
-            © 2020 Copyright:
-            <a class="text-white" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+            © 2024 Copyright:
+            <a class="text-white" href="#">Pedilz.com</a>
         </div>
         <!-- Copyright -->
     </footer>
