@@ -41,6 +41,13 @@ class RegisterController
             exit();
         }
 
+        // validasi panjang password min 8 max 255
+        if (strlen($password) < 8 || strlen($password) > 255) {
+            $_SESSION['error_message'] = "Password harus memiliki panjang minimal 8 karakter!";
+            header('Location: ../../register.php');
+            exit();
+        }
+        
         // create new account
         $sql = "INSERT INTO user (username, password, email, role) VALUES (?, ?, ?, ?)";
         $stmt = $this->conn->prepare($sql);
