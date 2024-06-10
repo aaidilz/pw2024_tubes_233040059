@@ -12,26 +12,35 @@ $categories = $controller->getAllCategory();
   <br>
 </section>
 <!-- hero section -->
-<section class="justify-content-center align-items-center">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-6 d-flex flex-column justify-content-center mb-3">
+<?php if (isset($_SESSION['username'])) : ?>
+      <div class="container-fluid">
         <div class="container">
-          <h1 class="text-white">Get your merchandise with STACKED</h1>
-          <hr class="bg-white" style="height: 2px;">
-          <p class="text-white fs-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem ullam officia
-            laudantium illo dignissimos est atque maxime velit dicta magnam.</p>
-          <!-- button -->
-          <a href="login.php" class="btn btn-primary mt-4">GET STARTED</a>
+          <h4 class="text-white">Welcome back, <?php echo $_SESSION['username']; ?>!</h4>
         </div>
       </div>
-      <div class="col-md-6">
-        <img src="https://pnghq.com/wp-content/uploads/genshin-png-stickers-png-download-52499-768x698.png"
-          class="img-fluid">
-      </div>
-    </div>
-  </div>
-</section>
+    <?php else : ?>
+        <!-- hero section -->
+        <section class="justify-content-center align-items-center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 d-flex flex-column justify-content-center mb-3">
+                        <div class="container">
+                            <h1 class="text-white">Get your merchandise with STACKED</h1>
+                            <hr class="bg-white" style="height: 2px;">
+                            <p class="text-white fs-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem ullam officia
+                                laudantium illo dignissimos est atque maxime velit dicta magnam.</p>
+                            <!-- button -->
+                            <a href="login.php" class="btn btn-primary mt-4">GET STARTED</a>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <img src="https://pnghq.com/wp-content/uploads/genshin-png-stickers-png-download-52499-768x698.png"
+                            class="img-fluid">
+                    </div>
+                </div>
+            </div>
+        </section>
+    <?php endif; ?>
 <section>
   <br>
   <br>
